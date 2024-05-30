@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Age Calculator</string>
+    <string name="action_settings">Settings</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="Calculate_Btn_Text">Calculate Age!</string>
+    <string name="previous">Previous</string>
+
+    <string name="first_name"> First Name </string>
+    <string name="last_name"> Last Name </string>
+    <string name="dob"> Date of Birth </string>
+
+    <string name="lorem_ipsum">
+        Hello world!
+    </string>
+    <string name="RightButtText">Count</string>
+    <string name="LeftButtString">Toast!</string>
+    <string name="ResultText">Result</string>
+    <string name="first_name_hint">Enter your First name</string>
+    <string name="last_name_hint">Enter your Last name.</string>
+    <string name="dob_after_today_error">Date of birth is after the current date!</string>
+    <string name="invalid_date_of_birth">Invalid date of birth.</string>
+    <string name="please_enter_a_first_name">Please enter a first name.</string>
+    <string name="please_enter_a_last_name">Please enter a last name.</string>
+</resources>
