@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="green">#FF00B300</color>
+    <color name="darkGreen">#FF004D00</color>
+    <color name="Steve">#FF4D4DFF</color>
+    <color name="Maple">#FF4D4D4D</color>
+    <color name="Joe">#FFFF3300</color>
+    <color name="Mr_Biscuit">#FF992600</color>
+    <color name="Farquadd">#FFFF0000</color>
+    <color name="Humdinger">#FF0073E6</color>
+    <color name="Kita">#FFE6B800</color>
+</resources>

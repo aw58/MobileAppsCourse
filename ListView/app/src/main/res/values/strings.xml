@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ListView</string>
+    <string name="back">Back</string>
+    <string name="this_is_the_animal_s_type">This is the animal\'s type!</string>
+    <string name="this_is_the_animal_s_name">This is the animal\'s name!</string>
+    <string name="years_old">years old</string>
+    <string name="this_is_the_animal_s_description">This is the animal\'s description!</string>
+    <string name="residents_of_brioche_forest">Residents of Brioche Forest</string>
+</resources>

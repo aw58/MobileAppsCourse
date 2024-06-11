@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:background="@color/darkGreen">
+
+    <TextView
+        android:id="@+id/textView_Name"
+        android:layout_width="237dp"
+        android:layout_height="33dp"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/this_is_the_animal_s_name"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.091"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.119" />
+
+    <TextView
+        android:id="@+id/textView_Type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="@string/this_is_the_animal_s_type"
+        android:textColor="@color/white"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView_Name"
+        app:layout_constraintTop_toBottomOf="@+id/textView_Name"
+        app:layout_constraintVertical_bias="0.166" />
+
+    <TextView
+        android:id="@+id/textView_Age"
+        android:layout_width="23dp"
+        android:layout_height="19dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="42"
+        android:textColor="@color/white"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="@+id/textView_Age_String"
+        app:layout_constraintEnd_toEndOf="@+id/textView_Type"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView_Type"
+        app:layout_constraintTop_toTopOf="@+id/textView_Age_String"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView_Age_String"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="236dp"
+        android:fontFamily="sans-serif-condensed-light"
+        android:text="@string/years_old"
+        android:textColor="@color/white"
+        android:textStyle="italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView_Age"
+        app:layout_constraintTop_toBottomOf="@+id/textView_Type"
+        app:layout_constraintVertical_bias="0.428" />
+
+    <ImageView
+        android:id="@+id/ImageView_image"
+        android:layout_width="86dp"
+        android:layout_height="67dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView_Name"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
