@@ -1,0 +1,29 @@
+<resources>
+
+    <!-- Base application theme -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Primary branding color -->
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+        <item name="colorAccent">@color/secondaryColor</item>
+
+        <!-- Customize your theme here -->
+        <item name="android:statusBarColor">@color/primaryDarkColor</item>
+        <item name="android:windowBackground">@color/backgroundColor</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textColorSecondary">@color/textColorSecondary</item>
+        <item name="android:fontFamily">@font/freedom_10em</item>
+    </style>
+
+    <!-- Custom TextView styles -->
+    <style name="CustomTextView" parent="android:TextAppearance">
+        <item name="android:fontFamily">@font/freedom_10em</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+    </style>
+
+    <style name="CustomTextView.Bold" parent="android:TextAppearance">
+        <item name="android:fontFamily">@font/freedom_nz4j</item>
+        <item name="android:textColor">@color/textColorPrimary</item>
+    </style>
+
+</resources>

@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Practice3_SQLDatabase</string>
+    <string name="restaurant_name">restaurant name</string>
+    <string name="cuisine_type">cuisine type</string>
+    <string name="galastore">GalaStore!</string>
+    <string name="product_name">Product Name</string>
+    <string name="product_description">Product Description</string>
+    <string name="cost">Cost</string>
+    <string name="zipcoins">ZipCoins</string>
+    <string name="select">Select</string>
+    <string name="please_select_at_least_3_items">Please select at least 3 items.</string>
+    <string name="send_email">Send Email</string>
+    <string name="back">Back</string>
+</resources>
