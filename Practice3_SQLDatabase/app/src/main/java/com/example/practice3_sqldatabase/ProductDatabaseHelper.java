@@ -58,8 +58,8 @@ public class ProductDatabaseHelper extends SQLiteOpenHelper {
 
     public void populateProductsDatabase(){
         SQLiteDatabase database = getWritableDatabase();
-        ContentValues values = new ContentValues();
 
+        ContentValues values = new ContentValues();
         values.put(KEY_ID, 1);
         values.put(KEY_NAME, "Void Generator");
         values.put(KEY_PRICE, 4);
@@ -84,6 +84,33 @@ public class ProductDatabaseHelper extends SQLiteOpenHelper {
         values.put(KEY_SELLER, "CallYourMom.glx");
         values.put(KEY_DESCRIPTION, "Connect with all your intergalactic buddies for an incredibly low price! (Interstellar Call Credits not included.)");
         values.put(KEY_IMAGE, R.drawable.telephone);
+        database.insert(TABLE_PRODUCTS, null, values);
+
+        values = new ContentValues();
+        values.put(KEY_ID, 4);
+        values.put(KEY_NAME, "Sun Diver");
+        values.put(KEY_PRICE, 400);
+        values.put(KEY_SELLER, "CrazSportz Suppliers");
+        values.put(KEY_DESCRIPTION, "A ship used to ride solar flares. It might be expensive, the the thrill is worth it!");
+        values.put(KEY_IMAGE, R.drawable.sun_diver);
+        database.insert(TABLE_PRODUCTS, null, values);
+
+        values = new ContentValues();
+        values.put(KEY_ID, 5);
+        values.put(KEY_NAME, "Hitchiker's Guide");
+        values.put(KEY_PRICE, 2);
+        values.put(KEY_SELLER, "Hitchiker's Inc.");
+        values.put(KEY_DESCRIPTION, "A must-have guide for all you adventurous klaxon's out there. Never get lost in the galaxy with it!");
+        values.put(KEY_IMAGE, R.drawable.hitchiker);
+        database.insert(TABLE_PRODUCTS, null, values);
+
+        values = new ContentValues();
+        values.put(KEY_ID, 6);
+        values.put(KEY_NAME, "Bonsai of the Erdtree");
+        values.put(KEY_PRICE, 2);
+        values.put(KEY_SELLER, "FromSomewhere");
+        values.put(KEY_DESCRIPTION, "A shard of the blessed Erdtree of the Lands Between, grown to perfectly fit in your lavish living room.");
+        values.put(KEY_IMAGE, R.drawable.bonsai);
         database.insert(TABLE_PRODUCTS, null, values);
 
         database.close();
