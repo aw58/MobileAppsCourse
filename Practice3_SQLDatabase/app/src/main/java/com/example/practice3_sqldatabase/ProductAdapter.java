@@ -1,6 +1,7 @@
 package com.example.practice3_sqldatabase;
 
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,11 +54,11 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
                 if(isSelectable){
                     if(selected_products.contains(item)){
                         selected_products.remove(item);
-                        holder.itemView.setBackgroundColor(Color.TRANSPARENT);
+                        holder.itemView.setBackgroundColor(Color.rgb(0, 0, 204));
                     }
                     else{
                         selected_products.add(item);
-                        holder.itemView.setBackgroundColor(Color.LTGRAY);
+                        holder.itemView.setBackgroundColor(Color.rgb(26, 175, 255));
                     }
                     //printSelected();
                 }
