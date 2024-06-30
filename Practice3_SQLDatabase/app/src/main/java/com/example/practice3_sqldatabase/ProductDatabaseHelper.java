@@ -12,12 +12,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDatabaseHelper extends SQLiteOpenHelper {
+
+    //local variables
     private static final String DATABASE_NAME = "products_database";
 
+    //must update database version every time the schema changes!
     private static final int DATABASE_VERSION = 4;
 
     private static final String TABLE_PRODUCTS = "products";
 
+    //keys to the database values
     private static final String KEY_ID = "id";
 
     private static final String KEY_NAME = "name";
@@ -36,6 +40,7 @@ public class ProductDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db){
+        //create the database schema. Changes here must update the version number
         String QUERY_CREATE_PRODUCTS_TABLE = "CREATE TABLE " + TABLE_PRODUCTS + " (" +
                 KEY_ID + " INTEGER PRIMARY KEY, " +
                 KEY_NAME + " TEXT, " +
@@ -48,6 +53,7 @@ public class ProductDatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(QUERY_CREATE_PRODUCTS_TABLE);
     }
 
+    //called on an update to the DB version
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Drop older table if exists
@@ -56,6 +62,8 @@ public class ProductDatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    //populate the database with all the objects in our store!
+    //don't actually make Product objects until they are actually retrieved.
     public void populateProductsDatabase(){
         SQLiteDatabase database = getWritableDatabase();
 
@@ -116,6 +124,7 @@ public class ProductDatabaseHelper extends SQLiteOpenHelper {
         database.close();
     }
 
+    //return all the products as a list of Product objects.
     public List<Product> getAllProducts(){
         List<Product> products = new ArrayList<>();
 
@@ -128,6 +137,7 @@ public class ProductDatabaseHelper extends SQLiteOpenHelper {
         // Loop through all rows and add to the list
         if (cursor.moveToFirst()) {
             do {
+                //load up all data into local variables
                 int id = cursor.getInt(cursor.getColumnIndexOrThrow(KEY_ID));
                 String name = cursor.getString(cursor.getColumnIndexOrThrow(KEY_NAME));
                 String description = cursor.getString(cursor.getColumnIndexOrThrow(KEY_DESCRIPTION));
@@ -135,15 +145,21 @@ public class ProductDatabaseHelper extends SQLiteOpenHelper {
                 int price = cursor.getInt(cursor.getColumnIndexOrThrow(KEY_PRICE));
                 int image = cursor.getInt(cursor.getColumnIndexOrThrow(KEY_IMAGE));
 
+                //use local variables to make a Product object
                 Product product = new Product(id, name, description, seller, price, image);
-                System.out.println(product);
-                System.out.println(("PRODUCT IMAGE: " + product.getImageResourceID()));
+                //System.out.println(product);
+                //System.out.println(("PRODUCT IMAGE: " + product.getImageResourceID()));
+
+                //add that product to the return list
                 products.add(product);
-            } while (cursor.moveToNext());
+            } while (cursor.moveToNext()); //do this for all products available
         }
 
+        //close the database
         cursor.close();
         db.close();
+
+        //return all product objects
         return products;
     }
 

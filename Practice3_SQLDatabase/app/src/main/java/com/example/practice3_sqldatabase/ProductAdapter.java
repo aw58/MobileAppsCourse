@@ -18,14 +18,19 @@ import java.util.Set;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
 
+    //Local variables to keep track of products in the list
     private List<Product> products;
 
+    //local variable which keeps track of which products have been selected
     private Set<Product> selected_products;
 
+    //determines whether the items can be selected
     private Boolean isSelectable = true;
 
+    //default constructor
     public ProductAdapter(List<Product> products) {
         this.products = products;
+        //no selected products yet. Initialize.
         this.selected_products = new HashSet<>();
     }
 
@@ -38,22 +43,32 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        int position1 = position;
+        int position1 = position;  //got an error saying that "position" could change and that I should use a local variable instead
+        //create a local copy of the product at position1
         Product product = products.get(position1);
+
+        //Set the holder's (item's) xml elements to the product-unique details
+        //the ViewHolder class is defined below.
         holder.name_TextView.setText(product.getProduct_name());
-        System.out.println("The product cost is:" + String.valueOf(product.getProduct_cost()));
+        //System.out.println("The product cost is:" + String.valueOf(product.getProduct_cost()));
         holder.cost_TextView.setText(String.valueOf(product.getProduct_cost()));
         holder.description_TextView.setText(product.getProduct_description());
         holder.productImage.setImageResource(product.getImageResourceID());
-        System.out.println("IMAGE: " + product.getImageResourceID());
+        //System.out.println("IMAGE: " + product.getImageResourceID());
 
+        //onclick behavior for each item.
+        //Select the item if not selected, otherwise, remove from selected.
+        //change color of the background to show selected status
+        //must call notifyDataSetChanged to show changes
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 Product item = products.get(position1);
-                if(isSelectable){
+
+                if(isSelectable){ //if the items are not selectable, skip this functionality
                     if(selected_products.contains(item)){
                         selected_products.remove(item);
+                        //had issues with getting Color resources to work, so used hardcoded values instead
                         holder.itemView.setBackgroundColor(Color.rgb(0, 0, 204));
                     }
                     else{
@@ -66,9 +81,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         });
     }
 
+
+    //Getters and Setters
+
     @Override
     public int getItemCount() {
-        System.out.println("THE NUMBER OF PRODUCTS IS " + String.valueOf(this.products.size()));
+        //System.out.println("THE NUMBER OF PRODUCTS IS " + String.valueOf(this.products.size()));
         return this.products.size();
     }
 
@@ -77,12 +95,12 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
     }
 
     public int getSelectedCount(){
-        System.out.println("THE NUMBER OF SELECTED PRODUCTS IS " + String.valueOf(this.selected_products.size()));
+        //System.out.println("THE NUMBER OF SELECTED PRODUCTS IS " + String.valueOf(this.selected_products.size()));
         return this.selected_products.size();
     }
 
     public Set<Product> getSelectedProducts(){
-        System.out.println("PRODUCTS: " + this.selected_products);
+        //System.out.println("PRODUCTS: " + this.selected_products);
         return this.selected_products;
     }
 
@@ -92,6 +110,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         notifyDataSetChanged();
     }
 
+    // for debugging
     public void printSelected(){
         System.out.println("SELECTED PRODUCTS:");
         for(Product pr: this.selected_products){
@@ -99,7 +118,10 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
         }
     }
 
+    //Custom ViewHolder class which allows the xml elements in a recyclerView item to be bound together into one object
+    //made for ease of reference
     public class ViewHolder extends RecyclerView.ViewHolder {
+        //the local variables for each of the xml elements in an item
         public TextView name_TextView;
         public TextView cost_TextView;
         public TextView description_TextView;
@@ -107,6 +129,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHold
 
         public ViewHolder(View itemView) {
             super(itemView);
+            //assign actual views to the local variables
             name_TextView = itemView.findViewById(R.id.name_TextView);
             cost_TextView = itemView.findViewById(R.id.cost_TextView);
             description_TextView = itemView.findViewById(R.id.description_TextView);

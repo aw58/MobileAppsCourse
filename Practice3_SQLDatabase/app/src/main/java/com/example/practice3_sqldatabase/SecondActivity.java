@@ -29,6 +29,7 @@ import java.util.Set;
 
 public class SecondActivity extends AppCompatActivity {
 
+    //local variables for xml elements
     private Button send_email_button;
 
     private Button back_button;
@@ -37,6 +38,7 @@ public class SecondActivity extends AppCompatActivity {
 
     private RecyclerView second_recyclerView;
 
+    //local copy of selectedProducts coming in over the intent
     private List<Product> selectedProducts;
 
     private static final int EMAIL_REQUEST_CODE = 1;
@@ -46,6 +48,8 @@ public class SecondActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        //default content
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_second);
@@ -54,10 +58,15 @@ public class SecondActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        //set local variables to views in the xml
         send_email_button = findViewById(R.id.send_email_button);
         back_button = findViewById(R.id.back_button);
+        //get the Product information from the intent.
         this.selectedProducts = (List<Product>) getIntent().getSerializableExtra("selected_products");
-        System.out.println(this.selectedProducts);
+        //System.out.println(this.selectedProducts);
+
+        //find and populate the recyclerview with an Adapter based on the incoming products
         second_recyclerView = findViewById(R.id.second_selected_products_list);
         second_productAdapter = new ProductAdapter(this.selectedProducts);
         second_productAdapter.setSelectable(false);
@@ -83,6 +92,7 @@ public class SecondActivity extends AppCompatActivity {
         send_email_button.setOnClickListener(new View.OnClickListener(){
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
+            //use a custom function to send the email. Abstracted for clarity
             public void onClick(View view){
                 sendEmail();
             }
@@ -92,6 +102,7 @@ public class SecondActivity extends AppCompatActivity {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view){
+                //create an intent to navigate back to the mainActivity
                 Intent intent = new Intent(SecondActivity.this, MainActivity.class);
                 startActivity(intent);
             }
@@ -103,6 +114,8 @@ public class SecondActivity extends AppCompatActivity {
         StringBuilder emailContent = new StringBuilder();
         emailContent.append("<html><body>");
         emailContent.append("<h1>Selected Products:</h1>");
+
+        //load up text for each product into the email
         for (Product product : this.selectedProducts) {
             emailContent.append("<h2>").append(product.getProduct_name()).append("</h2>");
             emailContent.append("<p>Price: ").append(product.getProduct_cost()).append(" ZipCoins</p>");
