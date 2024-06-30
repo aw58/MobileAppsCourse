@@ -117,7 +117,7 @@ public class SecondActivity extends AppCompatActivity {
         intent.setType("text/html"); // Email MIME type
 
         // Set recipient (you can set multiple recipients separated by comma)
-        intent.putExtra(Intent.EXTRA_EMAIL, new String[] {"amelia.wear13@gmail.com"});
+        intent.putExtra(Intent.EXTRA_EMAIL, new String[] {"sweng888mobileapps@gmail.com "});
 
         // Set subject
         intent.putExtra(Intent.EXTRA_SUBJECT, "Selected Products");
