@@ -1,12 +1,15 @@
 package com.example.practiceiv_firebase_fragments;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Button;
-import android.widget.TextView;
 
+import com.example.practiceiv_firebase_fragments.Player.Player;
+import com.example.practiceiv_firebase_fragments.Player.PlayerAdapter;
+import com.example.practiceiv_firebase_fragments.Player.PlayerDatabaseHelper;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
@@ -19,11 +22,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.practiceiv_firebase_fragments.databinding.ActivityMainBinding;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
     private Button logout_button;
+    private PlayerDatabaseHelper playerDatabaseHelper;
+    private SQLiteDatabase player_database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +83,18 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //set up the player database
+        playerDatabaseHelper = new PlayerDatabaseHelper(this);
+        List<Player> player_roster = playerDatabaseHelper.getAllPlayers();
+
+        //if there were no product there (default behavior) then load the products and pull again
+        if(player_roster.isEmpty()){
+            playerDatabaseHelper.populateProductsDatabase();
+            player_roster = playerDatabaseHelper.getAllPlayers();
+        }
+
+        player_database = playerDatabaseHelper.getWritableDatabase();
+
     }
 
     @Override
@@ -90,5 +109,9 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    public SQLiteDatabase getDatabase(){
+        return this.player_database;
     }
 }

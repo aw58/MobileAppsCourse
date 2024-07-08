@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/nav_roster"
-        android:name="com.example.practiceiv_firebase_fragments.ui.opponents.OpponentsFragment"
-        android:label="@string/menu_home"
-        tools:layout="@layout/fragment_opponents" />
+        android:name="com.example.practiceiv_firebase_fragments.ui.roster.RosterFragment"
+        android:label="Roster"
+        tools:layout="@layout/fragment_roster" />
 
     <fragment
         android:id="@+id/nav_opponents"
-        android:name="com.example.practiceiv_firebase_fragments.ui.roster.RosterFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_roster" />
+        android:name="com.example.practiceiv_firebase_fragments.ui.opponents.OpponentsFragment"
+        android:label="Opponents"
+        tools:layout="@layout/fragment_opponents" />
 
     <fragment
         android:id="@+id/nav_field"
         android:name="com.example.practiceiv_firebase_fragments.ui.field.FieldFragment"
-        android:label="@string/menu_slideshow"
+        android:label="Field"
         tools:layout="@layout/fragment_field" />
 </navigation>
