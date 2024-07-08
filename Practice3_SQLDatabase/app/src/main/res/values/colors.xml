@@ -3,9 +3,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="selected">#FF737373</color>
+    <color name="dark_purple">#FF7300FF</color>
+    <color name="dark_blue">#FF0000CC</color>
+    <color name="light_blue">#FF1AAFFF</color>
 
-    <color name="primaryColor">#FF0000CC</color>
-    <color name="primaryLightColor">#FF1A1AFF</color>
+    <color name="primaryColor">#FF000033</color>
     <color name="primaryDarkColor">#FF000033</color>
     <color name="secondaryColor">#FFFFFF66</color>
     <color name="backgroundColor">#FF000000</color>

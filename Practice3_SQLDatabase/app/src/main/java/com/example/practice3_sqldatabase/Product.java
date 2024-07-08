@@ -9,6 +9,7 @@ import java.io.Serializable;
 
 public class Product implements Parcelable {
 
+    //A Product's data fields:
     private int product_id;
 
     private String product_name;
@@ -22,7 +23,7 @@ public class Product implements Parcelable {
     private int imageResourceID;
 
 
-
+    //default constructor
     public Product(int product_id, String product_name, String product_description, String product_seller, int product_cost, int imageResourceID){
         this.product_id = product_id;
         this.product_name = product_name;
@@ -32,6 +33,7 @@ public class Product implements Parcelable {
         this.imageResourceID = imageResourceID;
     }
 
+    //parcelable-specific constructor
     protected Product(Parcel in) {
         product_id = in.readInt();
         product_name = in.readString();
@@ -51,6 +53,7 @@ public class Product implements Parcelable {
         dest.writeInt(this.imageResourceID);
     }
 
+    //necessary for the Parcel class
     public static final Creator<Product> CREATOR = new Creator<Product>() {
         @Override
         public Product createFromParcel(Parcel in) {
@@ -63,6 +66,7 @@ public class Product implements Parcelable {
         }
     };
 
+    //Getters and Setters!
     public int getProduct_id(){
         return this.product_id;
     }
@@ -110,6 +114,8 @@ public class Product implements Parcelable {
     public void setImageResourceID(int imageResourceID){
         this.imageResourceID = imageResourceID;
     }
+
+    //required for Parcelable
     @Override
     public int describeContents() {
         return 0;

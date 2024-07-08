@@ -4,23 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="130dp"
+    android:background="@color/dark_blue"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintVertical_bias="0.027">
 
-        <TextView
-            android:id="@+id/name_TextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/product_name"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.093"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.126" />
+    <TextView
+        android:id="@+id/name_TextView"
+        android:layout_width="263dp"
+        android:layout_height="28dp"
+        android:fontFamily="@font/freedom_10em"
+        android:text="@string/product_name"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:typeface="sans"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.122" />
 
     <TextView
         android:id="@+id/cost_TextView"
@@ -30,19 +35,24 @@
         android:gravity="start"
         android:text="@string/cost"
         android:textAlignment="viewStart"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/name_TextView"
         app:layout_constraintEnd_toStartOf="@+id/zipcoins_TextView"
         app:layout_constraintTop_toTopOf="@+id/name_TextView"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/description_TextView"
-        android:layout_width="237dp"
-        android:layout_height="69dp"
+        android:layout_width="258dp"
+        android:layout_height="62dp"
         android:layout_marginBottom="16dp"
+        android:fontFamily="serif"
         android:text="@string/product_description"
+        android:textColor="@color/white"
+        android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imageView"
+        app:layout_constraintHorizontal_bias="0.377"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_TextView"
         app:layout_constraintVertical_bias="1.0" />
@@ -53,6 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:text="@string/zipcoins"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="@+id/cost_TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/cost_TextView"
