@@ -10,7 +10,7 @@ public class FieldViewModel extends ViewModel {
 
     public FieldViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is AAAAAAAA fragment");
+        mText.setValue("This is Field fragment");
     }
 
     public LiveData<String> getText() {
