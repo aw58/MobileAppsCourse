@@ -40,9 +40,6 @@ public class FieldFragment extends Fragment {
         binding = FragmentFieldBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textSlideshow;
-        fieldViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
-
         // Update the title in the app_bar
         AppCompatActivity activity = (AppCompatActivity) requireActivity();
         ActionBar actionBar = activity.getSupportActionBar();

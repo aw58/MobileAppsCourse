@@ -17,7 +17,7 @@
             android:name=".SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.PracticeIV_firebase_fragments.NoActionBar">
-        <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
