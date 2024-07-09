@@ -27,7 +27,7 @@ import java.util.List;
 public class FieldFragment extends Fragment {
 
     private FragmentFieldBinding binding;
-    private static final String TAG = "RosterFragment";
+    private static final String TAG = "FieldFragment";
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,

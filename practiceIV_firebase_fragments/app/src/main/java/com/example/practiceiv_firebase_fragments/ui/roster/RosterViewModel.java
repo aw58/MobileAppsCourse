@@ -12,11 +12,12 @@ public class RosterViewModel extends ViewModel {
 
     private final MutableLiveData<String> mText;
 
-    private MutableLiveData<List<Player>> playerListLiveData = new MutableLiveData<>();
+    private final MutableLiveData<List<Player>> playerListLiveData;
 
     public RosterViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is roster fragment");
+        playerListLiveData = new MutableLiveData<>();
     }
 
     public LiveData<String> getText() {

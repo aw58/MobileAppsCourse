@@ -3,6 +3,7 @@ package com.example.practiceiv_firebase_fragments.Player;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -54,13 +55,22 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
         holder.productImage.setImageResource(player.getImageResourceID());
 
         //onclick behavior for each item.
-        //Select the item if not selected, otherwise, remove from selected.
-        //change color of the background to show selected status
-        //must call notifyDataSetChanged to show changes
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
                 Player item = players.get(position1);
+                //Move to a detail view?
+            }
+        });
+
+        //onclick behavior for each recruit button
+        //TODO
+        holder.recruit_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                //update the Player to be "recruited" or not based on the text on the button
+                //update the button text
+                //update the Database and RecyclerView
             }
         });
     }
@@ -97,6 +107,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
         public TextView viewholder_years_played_editable;
         public TextView viewholder_position_editable;
         public ImageView productImage;
+        public Button recruit_button;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -106,6 +117,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
             viewholder_years_played_editable = itemView.findViewById(R.id.item_years_played_editable);
             viewholder_position_editable = itemView.findViewById(R.id.item_position_editable);
             productImage = itemView.findViewById(R.id.imageView);
+            recruit_button = itemView.findViewById(R.id.recruit_button);
         }
     }
 }
