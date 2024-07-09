@@ -48,9 +48,8 @@ public class RosterFragment extends Fragment {
 
         player_recyclerView = root.findViewById(R.id.player_recyclerView);
         playerAdapter = new PlayerAdapter();
-
-        player_recyclerView.setAdapter(playerAdapter);
         player_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        player_recyclerView.setAdapter(playerAdapter);
 
         final TextView textView = binding.textGallery;
         rosterViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
@@ -58,7 +57,6 @@ public class RosterFragment extends Fragment {
         rosterViewModel.getPlayerListLiveData().observe(getViewLifecycleOwner(), players -> {
             // Update RecyclerView adapter with new player list
             playerAdapter.updateRosterList(players);
-            playerAdapter.notifyDataSetChanged(); // Or use more specific notify methods
         });
 
         // Get the Firebase database instance

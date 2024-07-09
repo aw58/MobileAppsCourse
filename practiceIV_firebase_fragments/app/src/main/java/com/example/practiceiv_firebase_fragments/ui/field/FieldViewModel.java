@@ -25,5 +25,4 @@ public class FieldViewModel extends ViewModel {
          mText.setValue(text);
     }
 
-
 }

@@ -9,9 +9,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.practiceiv_firebase_fragments.Player.Player;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
+import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -24,6 +27,7 @@ import com.example.practiceiv_firebase_fragments.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthMultiFactorException;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -104,6 +108,16 @@ public class MainActivity extends AppCompatActivity {
         //create the Firebase database
         System.out.println("CREATING THE DATABASE");
         player_firestore_db = FirebaseFirestore.getInstance();
+        //Clear the database
+        FirebaseHelper.getInstance().clearCollection("players", new OnCompleteListener<QuerySnapshot>() {
+
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                Log.d(TAG, "Collection successfully cleared");
+            }
+        });
+
+        //Add all the players to the database
         loadPlayersToDB();
     }
 
