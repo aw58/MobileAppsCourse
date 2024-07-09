@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -46,13 +48,18 @@ public class RosterFragment extends Fragment {
         binding = FragmentRosterBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        // Update the title in the app_bar
+        AppCompatActivity activity = (AppCompatActivity) requireActivity();
+        ActionBar actionBar = activity.getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle("Home Team Roster");
+            actionBar.setDisplayHomeAsUpEnabled(true); // Example: enable back button
+        }
+
         player_recyclerView = root.findViewById(R.id.player_recyclerView);
         playerAdapter = new PlayerAdapter();
         player_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         player_recyclerView.setAdapter(playerAdapter);
-
-        final TextView textView = binding.textGallery;
-        rosterViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
 
         rosterViewModel.getPlayerListLiveData().observe(getViewLifecycleOwner(), players -> {
             // Update RecyclerView adapter with new player list

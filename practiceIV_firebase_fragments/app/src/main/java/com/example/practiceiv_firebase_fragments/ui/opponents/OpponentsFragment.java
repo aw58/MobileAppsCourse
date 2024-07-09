@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -26,6 +28,15 @@ public class OpponentsFragment extends Fragment {
 
         final TextView textView = binding.textHome;
         opponentsViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
+        // Update the title in the app_bar
+        AppCompatActivity activity = (AppCompatActivity) requireActivity();
+        ActionBar actionBar = activity.getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setTitle("Opponents");
+            actionBar.setDisplayHomeAsUpEnabled(true); // Example: enable back button
+        }
+
         return root;
     }
 

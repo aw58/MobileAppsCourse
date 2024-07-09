@@ -15,6 +15,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAnchorView(R.id.fab).show();
             }
         });
+
         System.out.println("SOMETHING1.9");
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
@@ -119,6 +121,9 @@ public class MainActivity extends AppCompatActivity {
 
         //Add all the players to the database
         loadPlayersToDB();
+
+        // Update the title in the app_bar
+        getSupportActionBar().setTitle("Home Team Roster");
     }
 
     @Override
@@ -145,7 +150,14 @@ public class MainActivity extends AppCompatActivity {
 
         //Add all player objects here
         list_of_players.add(new Player(1, "Forg the Unstoppable", "From the back swamps of Nantucket, this frog just keeps hopping!", "Center Midfield", 10, 4, R.drawable.forg, 1 ));
-        System.out.println("PLAYERS SIZE: " + String.valueOf(list_of_players.size()));
+        list_of_players.add(new Player(2, "Maple the Unsheathed", "Watch out- this little from fights dirty and will stop anything approaching the goal.", "Center Forward", 3, 2, R.drawable.forg, 1 ));
+        list_of_players.add(new Player(3, "Crazy Jack", "Some say Jack can jump to the ceiling of the stadium, though he's never needed to in a game.", "Center Defense", 5, 5, R.drawable.forg, 1 ));
+        list_of_players.add(new Player(4, "Sister Jumpy", "Sister Jumpy has an incredible devotion to the sport, and the passion to win over her teammates", "Left Midfield", 6, 6, R.drawable.forg, 1 ));
+        list_of_players.add(new Player(5, "Slimester the Slippery", "This frog can't be caught without their pursuer being covered in slime!", "Right Midfield", 5, 8, R.drawable.forg, 1 ));
+        list_of_players.add(new Player(6, "Broccoli the Camouflaged", "You'll never see him coming until it's too late. So fast that he's played for longer than he's lived, so he claims.", "Left Forward", 9, 2, R.drawable.forg, 0 ));
+        list_of_players.add(new Player(7, "Dennis", "Just Dennis", "Right Forward", 0, 1, R.drawable.forg, 0 ));
+
+        //System.out.println("PLAYERS SIZE: " + String.valueOf(list_of_players.size()));
 
 
         // Add players to Firestore

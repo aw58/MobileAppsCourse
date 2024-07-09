@@ -22,14 +22,15 @@
 
     <Button
         android:id="@+id/recruit_button"
-        android:layout_width="109dp"
-        android:layout_height="55dp"
+        android:layout_width="81dp"
+        android:layout_height="74dp"
         android:layout_marginEnd="16dp"
         android:text="Recruit"
+        android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.786" />
+        app:layout_constraintVertical_bias="0.803" />
 
     <TextView
         android:id="@+id/item_name_title"
@@ -72,6 +73,7 @@
         android:layout_width="175dp"
         android:layout_height="21dp"
         android:hint="name"
+        android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="@+id/item_position_editable"
         app:layout_constraintTop_toTopOf="@+id/item_name_title" />
 
@@ -80,6 +82,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="position"
+        android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="@+id/item_age_editable"
         app:layout_constraintTop_toTopOf="@+id/item_position_title" />
 
@@ -89,6 +92,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:hint="age"
+        android:textColor="@android:color/black"
         app:layout_constraintStart_toEndOf="@+id/item_position_title"
         app:layout_constraintTop_toTopOf="@+id/item_age_title" />
 
@@ -97,6 +101,7 @@
         android:layout_width="33dp"
         android:layout_height="19dp"
         android:hint="years"
+        android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="@+id/item_age_editable"
         app:layout_constraintTop_toTopOf="@+id/item_years_played_title" />
 
