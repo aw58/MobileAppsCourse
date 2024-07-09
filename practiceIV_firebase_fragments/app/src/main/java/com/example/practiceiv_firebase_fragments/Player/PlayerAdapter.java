@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.practiceiv_firebase_fragments.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -23,6 +24,10 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
     private Boolean isSelectable = true;
 
     //default constructor
+    public PlayerAdapter() {
+        this.players = new ArrayList<>();
+    }
+
     public PlayerAdapter(List<Player> players) {
         this.players = players;
     }

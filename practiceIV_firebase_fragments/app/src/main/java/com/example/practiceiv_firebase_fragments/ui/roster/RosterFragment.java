@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.practiceiv_firebase_fragments.FirebaseHelper;
@@ -45,8 +46,20 @@ public class RosterFragment extends Fragment {
         binding = FragmentRosterBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        player_recyclerView = root.findViewById(R.id.player_recyclerView);
+        playerAdapter = new PlayerAdapter();
+
+        player_recyclerView.setAdapter(playerAdapter);
+        player_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
         final TextView textView = binding.textGallery;
         rosterViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+
+        rosterViewModel.getPlayerListLiveData().observe(getViewLifecycleOwner(), players -> {
+            // Update RecyclerView adapter with new player list
+            playerAdapter.updateRosterList(players);
+            playerAdapter.notifyDataSetChanged(); // Or use more specific notify methods
+        });
 
         // Get the Firebase database instance
         player_firebase_db = FirebaseHelper.getInstance().getDatabase();
@@ -61,24 +74,20 @@ public class RosterFragment extends Fragment {
                         Player player = document.toObject(Player.class);
                         System.out.println("ADDING A PLAYER! INSIDE");
                         list_of_players.add(player);
+                        System.out.println("PLAYER ADDED: " + player.getPlayer_name());
+
+                        System.out.println("PLAYERS");
+                        for(int i = 0; i < list_of_players.size(); i++){
+                            System.out.print("here: ");
+                            System.out.println(list_of_players.get(i).getPlayer_name());
+                        }
+
+                        // Set player list to ViewModel
+                        rosterViewModel.setPlayerList(list_of_players);
                     }
                 },
                 e -> Log.e(TAG, "Error querying players", e)
         );
-
-        System.out.println("PLAYERS");
-        for(int i = 0; i < list_of_players.size(); i++){
-            System.out.print("here: ");
-            System.out.println(list_of_players.get(i).getPlayer_name());
-        }
-
-
-        player_recyclerView = root.findViewById(R.id.player_recyclerView);
-        //set up the adapter
-        playerAdapter = new PlayerAdapter(list_of_players);
-        //bind the adapter
-        player_recyclerView.setAdapter(playerAdapter);
-
 
         return root;
     }
