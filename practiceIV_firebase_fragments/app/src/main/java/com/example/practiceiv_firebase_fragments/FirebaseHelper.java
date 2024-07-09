@@ -37,9 +37,10 @@ public class FirebaseHelper {
     }
 
     public void addPlayer(Player player, OnSuccessListener<DocumentReference> onSuccessListener, OnFailureListener onFailureListener) {
-        db.collection("players").add(player)
-                .addOnSuccessListener(onSuccessListener)
-                .addOnFailureListener(onFailureListener);
+        DocumentReference playerRef = db.collection("players").document(player.getPlayer_id());
+        playerRef.set(player)
+                .addOnSuccessListener(aVoid -> Log.d("Firestore", "Player added with custom ID: " + player.getPlayer_id()))
+                .addOnFailureListener(e -> Log.e("Firestore", "Error adding player", e));
     }
 
     public void getAllPlayers(OnSuccessListener<QuerySnapshot> onSuccessListener, OnFailureListener onFailureListener) {
@@ -47,6 +48,22 @@ public class FirebaseHelper {
                 .get()
                 .addOnSuccessListener(onSuccessListener)
                 .addOnFailureListener(onFailureListener);
+    }
+
+    public void updatePlayer(String playerID, Player player){
+        // Update the player document in Firestore
+        FirebaseHelper.getInstance().getDatabase()
+                .collection("players")
+                .document(playerID)
+                .set(player)
+                .addOnSuccessListener(aVoid -> {
+                    // Successfully updated the player
+                    Log.d("Firestore", "Player successfully updated!");
+                })
+                .addOnFailureListener(e -> {
+                    // Failed to update the player
+                    Log.e("Firestore", "Error updating player", e);
+                });
     }
 
     // Method to delete all documents from a collection

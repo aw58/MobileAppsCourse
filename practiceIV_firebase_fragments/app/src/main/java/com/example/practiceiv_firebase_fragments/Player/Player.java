@@ -7,7 +7,7 @@ import android.os.Parcelable;
 public class Player implements Parcelable {
 
     //A Product's data fields:
-    private int player_id;
+    private String player_id;
 
     private String player_name;
 
@@ -25,7 +25,7 @@ public class Player implements Parcelable {
 
 
     //default constructor
-    public Player(int player_id, String player_name, String player_description, String player_position, int years_played, int player_age, int imageResourceID, int on_the_roster){
+    public Player(String player_id, String player_name, String player_description, String player_position, int years_played, int player_age, int imageResourceID, int on_the_roster){
         this.player_id = player_id;
         this.player_name = player_name;
         this.player_description = player_description;
@@ -44,7 +44,7 @@ public class Player implements Parcelable {
     //parcelable-specific constructor
     @SuppressLint("NewApi")
     protected Player(Parcel in) {
-        player_id = in.readInt();
+        player_id = in.readString();
         player_name = in.readString();
         player_description = in.readString();
         player_position = in.readString();
@@ -56,7 +56,7 @@ public class Player implements Parcelable {
     @SuppressLint("NewApi")
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.player_id);
+        dest.writeString(this.player_id);
         dest.writeString(this.player_name);
         dest.writeString(this.player_description);
         dest.writeString(this.player_position);
@@ -79,11 +79,11 @@ public class Player implements Parcelable {
     };
 
     //Getters and Setters!
-    public int getPlayer_id(){
+    public String  getPlayer_id(){
         return this.player_id;
     }
 
-    public void setPlayer_id(int player_id){
+    public void setPlayer_id(String  player_id){
         this.player_id = player_id;
     }
 
