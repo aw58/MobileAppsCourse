@@ -36,6 +36,11 @@ public class Player implements Parcelable {
         this.on_the_roster = on_the_roster;
     }
 
+    // Required default constructor
+    public Player() {
+        // Default constructor required for Firestore
+    }
+
     //parcelable-specific constructor
     @SuppressLint("NewApi")
     protected Player(Parcel in) {
