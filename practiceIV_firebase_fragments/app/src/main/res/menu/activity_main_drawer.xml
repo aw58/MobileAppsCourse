@@ -9,6 +9,10 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="Roster" />
         <item
+            android:id="@+id/nav_backups"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Backups" />
+        <item
             android:id="@+id/nav_opponents"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Opponents" />

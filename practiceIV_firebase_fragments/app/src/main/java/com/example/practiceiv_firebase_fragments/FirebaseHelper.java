@@ -50,6 +50,13 @@ public class FirebaseHelper {
                 .addOnFailureListener(e -> Log.e("Firestore", "Error adding Opponent", e));
     }
 
+    public void addBackup(Player opponent, OnSuccessListener<DocumentReference> onSuccessListener, OnFailureListener onFailureListener) {
+        DocumentReference playerRef = db.collection("backups").document(opponent.getPlayer_id());
+        playerRef.set(opponent)
+                .addOnSuccessListener(aVoid -> Log.d("Firestore", "Opponent added with custom ID: " + opponent.getPlayer_id()))
+                .addOnFailureListener(e -> Log.e("Firestore", "Error adding Opponent", e));
+    }
+
     public void getAllPlayers(OnSuccessListener<QuerySnapshot> onSuccessListener, OnFailureListener onFailureListener) {
         db.collection("players")
                 .get()
@@ -59,6 +66,13 @@ public class FirebaseHelper {
 
     public void getAllOpponents(OnSuccessListener<QuerySnapshot> onSuccessListener, OnFailureListener onFailureListener) {
         db.collection("opponents")
+                .get()
+                .addOnSuccessListener(onSuccessListener)
+                .addOnFailureListener(onFailureListener);
+    }
+
+    public void getAllBackups(OnSuccessListener<QuerySnapshot> onSuccessListener, OnFailureListener onFailureListener) {
+        db.collection("backups")
                 .get()
                 .addOnSuccessListener(onSuccessListener)
                 .addOnFailureListener(onFailureListener);
@@ -88,11 +102,27 @@ public class FirebaseHelper {
                 .set(player)
                 .addOnSuccessListener(aVoid -> {
                     // Successfully updated the player
-                    Log.d("Firestore", "Player successfully updated!");
+                    Log.d("Firestore", "opponents successfully updated!");
                 })
                 .addOnFailureListener(e -> {
                     // Failed to update the player
-                    Log.e("Firestore", "Error updating player", e);
+                    Log.e("Firestore", "Error updating opponents", e);
+                });
+    }
+
+    public void updateBackup(String playerID, Player player){
+        // Update the player document in Firestore
+        FirebaseHelper.getInstance().getDatabase()
+                .collection("backups")
+                .document(playerID)
+                .set(player)
+                .addOnSuccessListener(aVoid -> {
+                    // Successfully updated the player
+                    Log.d("Firestore", "backups successfully updated!");
+                })
+                .addOnFailureListener(e -> {
+                    // Failed to update the player
+                    Log.e("Firestore", "Error updating backups", e);
                 });
     }
 

@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_roster, R.id.nav_opponents, R.id.nav_field)
+                R.id.nav_roster, R.id.nav_backups, R.id.nav_opponents, R.id.nav_field)
                 .setOpenableLayout(drawer)
                 .build();
         System.out.println("SOMETHING1.95");
@@ -126,6 +126,9 @@ public class MainActivity extends AppCompatActivity {
         //Add all the players to the database
         System.out.println("CALLING LOAD PLAYERS");
         loadPlayersToDB();
+        //Add all the backups to the database
+        System.out.println("CALLING LOAD OPPONENTS");
+        loadbackupsToDB();
         //Add all the opponents to the database
         System.out.println("CALLING LOAD OPPONENTS");
         loadOpponentsToDB();
@@ -205,6 +208,31 @@ public class MainActivity extends AppCompatActivity {
                     e -> Log.e("MainActivity", "Error adding Opponent", e)
             );
             System.out.println("GOT THROUGH Opponent ADDING");
+        }
+    }
+
+    private void loadbackupsToDB(){
+        //Create Player Objects
+        List<Player> list_of_backups = new ArrayList<>();
+
+        //Add all player objects here
+        list_of_backups.add(new Player("1", "Backup1", "From the back swamps of Nantucket, this frog just keeps hopping!", "Center Midfield", 10, 4, R.drawable.forg, 1 ));
+        list_of_backups.add(new Player("2", "Backup2", "Watch out- this little from fights dirty and will stop anything approaching the goal.", "Center Forward", 3, 2, R.drawable.forg, 1 ));
+        list_of_backups.add(new Player("3", "Backup3", "Some say Jack can jump to the ceiling of the stadium, though he's never needed to in a game.", "Center Defense", 5, 5, R.drawable.forg, 1 ));
+        list_of_backups.add(new Player("4", "Backup4", "Sister Jumpy has an incredible devotion to the sport, and the passion to win over her teammates", "Left Midfield", 6, 6, R.drawable.forg, 1 ));
+
+        //System.out.println("PLAYERS SIZE: " + String.valueOf(list_of_players.size()));
+
+        // Add players to Firestore
+        for(int i = 0; i < list_of_backups.size(); i++){
+            System.out.println("ADDING A Backup!");
+            Player player = list_of_backups.get(i);
+            System.out.println("Backup: " + list_of_backups.get(i).getPlayer_name());
+            FirebaseHelper.getInstance().addBackup(player,
+                    documentReference -> Log.d("MainActivity", "Backup added successfully with ID: " + documentReference.getId()),
+                    e -> Log.e("MainActivity", "Error adding Backup", e)
+            );
+            System.out.println("GOT THROUGH Backup ADDING");
         }
     }
 }

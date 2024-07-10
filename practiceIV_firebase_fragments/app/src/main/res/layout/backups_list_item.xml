@@ -25,7 +25,7 @@
         android:layout_width="81dp"
         android:layout_height="74dp"
         android:layout_marginEnd="16dp"
-        android:text="Drop"
+        android:text="Recruit"
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
