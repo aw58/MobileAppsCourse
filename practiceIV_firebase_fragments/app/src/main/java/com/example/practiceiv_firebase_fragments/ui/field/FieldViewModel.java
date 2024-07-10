@@ -10,19 +10,35 @@ import java.util.List;
 
 public class FieldViewModel extends ViewModel {
 
-    private final MutableLiveData<String> mText;
+
+    private final MutableLiveData<List<Player>> playerListLiveData;
+    private final MutableLiveData<List<Player>> opponentListLiveData;
 
     public FieldViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is Field fragment");
+
+        playerListLiveData = new MutableLiveData<>();
+        opponentListLiveData = new MutableLiveData<>();
     }
 
-    public LiveData<String> getText() {
-        return mText;
+
+    // Method to set or update player list in ViewModel
+    public void setPlayerList(List<Player> players) {
+        playerListLiveData.setValue(players);
     }
 
-    public void setText(String text) {
-         mText.setValue(text);
+    // Getter for LiveData
+    public LiveData<List<Player>> getPlayerListLiveData() {
+        return playerListLiveData;
+    }
+
+    // Method to set or update player list in ViewModel
+    public void setOpponentList(List<Player> players) {
+        opponentListLiveData.setValue(players);
+    }
+
+    // Getter for LiveData
+    public LiveData<List<Player>> getOpponentListLiveData() {
+        return opponentListLiveData;
     }
 
 }

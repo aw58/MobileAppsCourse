@@ -167,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
         list_of_players.add(new Player("5", "Slimester the Slippery", "This frog can't be caught without their pursuer being covered in slime!", "Right Midfield", 5, 8, R.drawable.forg, 1 ));
         list_of_players.add(new Player("6", "Broccoli the Camouflaged", "You'll never see him coming until it's too late. So fast that he's played for longer than he's lived, so he claims.", "Left Forward", 9, 2, R.drawable.forg, 0 ));
         list_of_players.add(new Player("7", "Dennis", "Just Dennis", "Right Forward", 0, 1, R.drawable.forg, 0 ));
+        list_of_players.add(new Player("7", "Hopper", "Just Dennis", "Goalie", 0, 1, R.drawable.goalie, 0 ));
 
         //System.out.println("PLAYERS SIZE: " + String.valueOf(list_of_players.size()));
 
