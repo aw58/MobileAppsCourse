@@ -226,9 +226,9 @@ public class FieldFragment extends Fragment {
     }
 
     public Player getOpponentByPosition(String position){
-        for(int i = 0; i < list_of_players.size(); i++){
-            if(list_of_players.get(i).getPlayer_position().equals(position)){
-                return list_of_players.get(i);
+        for(int i = 0; i < list_of_opponents.size(); i++){
+            if(list_of_opponents.get(i).getPlayer_position().equals(position)){
+                return list_of_opponents.get(i);
             }
         }
         return null;
