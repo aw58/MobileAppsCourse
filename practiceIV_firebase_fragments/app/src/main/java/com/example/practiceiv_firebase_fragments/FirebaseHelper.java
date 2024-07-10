@@ -77,11 +77,11 @@ public class FirebaseHelper {
                             db.collection(collectionName)
                                     .document(document.getId())
                                     .delete()
-                                    .addOnFailureListener(e -> Log.e(TAG, "Error deleting document", e));
+                                    .addOnFailureListener(e -> Log.e("FirebaseHelper", "Error deleting document", e));
                         }
                         System.out.println("CLEARED DATABASE");
                     } else {
-                        Log.e(TAG, "Error getting documents: ", task.getException());
+                        Log.e("FirebaseHelper", "Error getting documents: ", task.getException());
                     }
                     onCompleteListener.onComplete(task);
                 });

@@ -37,7 +37,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
+            android:label="main_activity"
             android:theme="@style/Theme.PracticeIV_firebase_fragments.NoActionBar">
         </activity>
     </application>

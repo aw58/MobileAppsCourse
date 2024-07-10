@@ -42,8 +42,7 @@ public class RosterFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        RosterViewModel rosterViewModel =
-                new ViewModelProvider(this).get(RosterViewModel.class);
+        RosterViewModel rosterViewModel = new ViewModelProvider(this).get(RosterViewModel.class);
 
         binding = FragmentRosterBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -81,17 +80,17 @@ public class RosterFragment extends Fragment {
                         list_of_players.add(player);
                         System.out.println("PLAYER ADDED: " + player.getPlayer_name());
 
-                        System.out.println("PLAYERS");
-                        for(int i = 0; i < list_of_players.size(); i++){
-                            System.out.print("here: ");
-                            System.out.println(list_of_players.get(i).getPlayer_name());
-                        }
-
-                        // Set player list to ViewModel
-                        rosterViewModel.setPlayerList(list_of_players);
                     }
+                    System.out.println("PLAYERS");
+                    for(int i = 0; i < list_of_players.size(); i++){
+                        System.out.print("here: ");
+                        System.out.println(list_of_players.get(i).getPlayer_name());
+                    }
+
+                    // Set player list to ViewModel
+                    rosterViewModel.setPlayerList(list_of_players);
                 },
-                e -> Log.e(TAG, "Error querying players", e)
+                e -> Log.e("RosterFragment", "Error querying players", e)
         );
 
         return root;

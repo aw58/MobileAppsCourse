@@ -110,14 +110,18 @@ public class MainActivity extends AppCompatActivity {
         //create the Firebase database
         System.out.println("CREATING THE DATABASE");
         player_firestore_db = FirebaseFirestore.getInstance();
-        //Clear the database
-        FirebaseHelper.getInstance().clearCollection("players", new OnCompleteListener<QuerySnapshot>() {
 
+        //Clear the database
+        /*
+        System.out.println("CLEARING THE DB FROM MAIN");
+        FirebaseHelper.getInstance().clearCollection("players", new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                Log.d(TAG, "Collection successfully cleared");
+                Log.d("MainActivity", "Collection successfully cleared");
             }
         });
+        */
+
 
         //Add all the players to the database
         loadPlayersToDB();
@@ -159,15 +163,14 @@ public class MainActivity extends AppCompatActivity {
 
         //System.out.println("PLAYERS SIZE: " + String.valueOf(list_of_players.size()));
 
-
         // Add players to Firestore
         for(int i = 0; i < list_of_players.size(); i++){
             System.out.println("ADDING A PLAYER!");
             Player player = list_of_players.get(i);
             System.out.println("PLAYER: " + list_of_players.get(i).getPlayer_name());
             FirebaseHelper.getInstance().addPlayer(player,
-                    documentReference -> Log.d(TAG, "Player added successfully with ID: " + documentReference.getId()),
-                    e -> Log.e(TAG, "Error adding player", e)
+                    documentReference -> Log.d("MainActivity", "Player added successfully with ID: " + documentReference.getId()),
+                    e -> Log.e("MainActivity", "Error adding player", e)
             );
             System.out.println("GOT THROUGH ADDING");
         }

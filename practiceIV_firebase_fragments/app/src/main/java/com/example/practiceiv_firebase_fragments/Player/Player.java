@@ -138,7 +138,7 @@ public class Player implements Parcelable {
         return this.on_the_roster;
     }
 
-    public void setOn_the_roster(int on_the_roster){
+    public void setOnTheRoster(int on_the_roster){
         this.on_the_roster = on_the_roster;
     }
 
