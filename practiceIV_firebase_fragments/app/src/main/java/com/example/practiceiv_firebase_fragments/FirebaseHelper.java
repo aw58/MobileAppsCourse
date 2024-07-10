@@ -37,21 +37,21 @@ public class FirebaseHelper {
     }
 
     public void addPlayer(Player player, OnSuccessListener<DocumentReference> onSuccessListener, OnFailureListener onFailureListener) {
-        DocumentReference playerRef = db.collection("players").document(player.getPlayer_id());
+        DocumentReference playerRef = db.collection("players").document(player.getPlayer_id().toString());
         playerRef.set(player)
                 .addOnSuccessListener(aVoid -> Log.d("Firestore", "Player added with custom ID: " + player.getPlayer_id()))
                 .addOnFailureListener(e -> Log.e("Firestore", "Error adding player", e));
     }
 
     public void addOpponent(Player opponent, OnSuccessListener<DocumentReference> onSuccessListener, OnFailureListener onFailureListener) {
-        DocumentReference playerRef = db.collection("opponents").document(opponent.getPlayer_id());
+        DocumentReference playerRef = db.collection("opponents").document(opponent.getPlayer_id().toString());
         playerRef.set(opponent)
                 .addOnSuccessListener(aVoid -> Log.d("Firestore", "Opponent added with custom ID: " + opponent.getPlayer_id()))
                 .addOnFailureListener(e -> Log.e("Firestore", "Error adding Opponent", e));
     }
 
     public void addBackup(Player opponent, OnSuccessListener<DocumentReference> onSuccessListener, OnFailureListener onFailureListener) {
-        DocumentReference playerRef = db.collection("backups").document(opponent.getPlayer_id());
+        DocumentReference playerRef = db.collection("backups").document(opponent.getPlayer_id().toString());
         playerRef.set(opponent)
                 .addOnSuccessListener(aVoid -> Log.d("Firestore", "Opponent added with custom ID: " + opponent.getPlayer_id()))
                 .addOnFailureListener(e -> Log.e("Firestore", "Error adding Opponent", e));

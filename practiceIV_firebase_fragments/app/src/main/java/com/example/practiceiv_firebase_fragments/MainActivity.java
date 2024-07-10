@@ -160,14 +160,14 @@ public class MainActivity extends AppCompatActivity {
         List<Player> list_of_players = new ArrayList<>();
 
         //Add all player objects here
-        list_of_players.add(new Player("1", "Forg the Unstoppable", "From the back swamps of Nantucket, this frog just keeps hopping!", "Center Midfield", 10, 4, R.drawable.forg, 1 ));
-        list_of_players.add(new Player("2", "Maple the Unsheathed", "Watch out- this little from fights dirty and will stop anything approaching the goal.", "Center Forward", 3, 2, R.drawable.forg, 1 ));
-        list_of_players.add(new Player("3", "Crazy Jack", "Some say Jack can jump to the ceiling of the stadium, though he's never needed to in a game.", "Center Defense", 5, 5, R.drawable.forg, 1 ));
-        list_of_players.add(new Player("4", "Sister Jumpy", "Sister Jumpy has an incredible devotion to the sport, and the passion to win over her teammates", "Left Midfield", 6, 6, R.drawable.forg, 1 ));
-        list_of_players.add(new Player("5", "Slimester the Slippery", "This frog can't be caught without their pursuer being covered in slime!", "Right Midfield", 5, 8, R.drawable.forg, 1 ));
-        list_of_players.add(new Player("6", "Broccoli the Camouflaged", "You'll never see him coming until it's too late. So fast that he's played for longer than he's lived, so he claims.", "Left Forward", 9, 2, R.drawable.forg, 0 ));
-        list_of_players.add(new Player("7", "Dennis", "Just Dennis", "Right Forward", 0, 1, R.drawable.forg, 0 ));
-        list_of_players.add(new Player("7", "Hopper", "Just Dennis", "Goalie", 0, 1, R.drawable.goalie, 0 ));
+        list_of_players.add(new Player(Long.parseLong("1"), "Forg the Unstoppable", "From the back swamps of Nantucket, this frog just keeps hopping!", "Center Midfield", 10, 4, R.drawable.forg, 1 ));
+        list_of_players.add(new Player(Long.parseLong("2"), "Maple the Unsheathed", "Watch out- this little from fights dirty and will stop anything approaching the goal.", "Center Forward", 3, 2, R.drawable.forg, 1 ));
+        list_of_players.add(new Player(Long.parseLong("3"), "Crazy Jack", "Some say Jack can jump to the ceiling of the stadium, though he's never needed to in a game.", "Center Defense", 5, 5, R.drawable.forg, 1 ));
+        list_of_players.add(new Player(Long.parseLong("4"), "Sister Jumpy", "Sister Jumpy has an incredible devotion to the sport, and the passion to win over her teammates", "Left Midfield", 6, 6, R.drawable.forg, 1 ));
+        list_of_players.add(new Player(Long.parseLong("5"), "Slimester the Slippery", "This frog can't be caught without their pursuer being covered in slime!", "Right Midfield", 5, 8, R.drawable.forg, 1 ));
+        list_of_players.add(new Player(Long.parseLong("6"), "Broccoli the Camouflaged", "You'll never see him coming until it's too late. So fast that he's played for longer than he's lived, so he claims.", "Left Forward", 9, 2, R.drawable.forg, 0 ));
+        list_of_players.add(new Player(Long.parseLong("7"), "Dennis", "Just Dennis", "Right Forward", 0, 1, R.drawable.forg, 0 ));
+        list_of_players.add(new Player(Long.parseLong("8"), "Hopper", "Just Dennis", "Goalie", 0, 1, R.drawable.goalie, 0 ));
 
         //System.out.println("PLAYERS SIZE: " + String.valueOf(list_of_players.size()));
 
@@ -189,13 +189,13 @@ public class MainActivity extends AppCompatActivity {
         List<Player> list_of_opponents = new ArrayList<>();
 
         //Add all player objects here
-        list_of_opponents.add(new Player("1", "Bartholomew", "From the back swamps of Nantucket, this frog just keeps hopping!", "Center Midfield", 10, 4, R.drawable.forg, 1 ));
-        list_of_opponents.add(new Player("2", "Richard", "Watch out- this little from fights dirty and will stop anything approaching the goal.", "Center Forward", 3, 2, R.drawable.forg, 1 ));
-        list_of_opponents.add(new Player("3", "Shawn", "Some say Jack can jump to the ceiling of the stadium, though he's never needed to in a game.", "Center Defense", 5, 5, R.drawable.forg, 1 ));
-        list_of_opponents.add(new Player("4", "Jake", "Sister Jumpy has an incredible devotion to the sport, and the passion to win over her teammates", "Left Midfield", 6, 6, R.drawable.forg, 1 ));
-        list_of_opponents.add(new Player("5", "Dude", "This frog can't be caught without their pursuer being covered in slime!", "Right Midfield", 5, 8, R.drawable.forg, 1 ));
-        list_of_opponents.add(new Player("6", "Porridge", "You'll never see him coming until it's too late. So fast that he's played for longer than he's lived, so he claims.", "Left Forward", 9, 2, R.drawable.forg, 1 ));
-        list_of_opponents.add(new Player("7", "Uhhh", "Just Dennis", "Right Forward", 0, 1, R.drawable.forg, 1 ));
+        list_of_opponents.add(new Player(Long.parseLong("1"), "Bartholomew", "From the back swamps of Nantucket, this frog just keeps hopping!", "Center Midfield", 10, 4, R.drawable.forg, 1 ));
+        list_of_opponents.add(new Player(Long.parseLong("2"), "Richard", "Watch out- this little from fights dirty and will stop anything approaching the goal.", "Center Forward", 3, 2, R.drawable.forg, 1 ));
+        list_of_opponents.add(new Player(Long.parseLong("3"), "Shawn", "Some say Jack can jump to the ceiling of the stadium, though he's never needed to in a game.", "Center Defense", 5, 5, R.drawable.forg, 1 ));
+        list_of_opponents.add(new Player(Long.parseLong("4"), "Jake", "Sister Jumpy has an incredible devotion to the sport, and the passion to win over her teammates", "Left Midfield", 6, 6, R.drawable.forg, 1 ));
+        list_of_opponents.add(new Player(Long.parseLong("5"), "Dude", "This frog can't be caught without their pursuer being covered in slime!", "Right Midfield", 5, 8, R.drawable.forg, 1 ));
+        list_of_opponents.add(new Player(Long.parseLong("6"), "Porridge", "You'll never see him coming until it's too late. So fast that he's played for longer than he's lived, so he claims.", "Left Forward", 9, 2, R.drawable.forg, 1 ));
+        list_of_opponents.add(new Player(Long.parseLong("7"), "Uhhh", "Just Dennis", "Right Forward", 0, 1, R.drawable.forg, 1 ));
 
         //System.out.println("PLAYERS SIZE: " + String.valueOf(list_of_players.size()));
 
@@ -217,10 +217,10 @@ public class MainActivity extends AppCompatActivity {
         List<Player> list_of_backups = new ArrayList<>();
 
         //Add all player objects here
-        list_of_backups.add(new Player("1", "Backup1", "From the back swamps of Nantucket, this frog just keeps hopping!", "Center Midfield", 10, 4, R.drawable.forg, 1 ));
-        list_of_backups.add(new Player("2", "Backup2", "Watch out- this little from fights dirty and will stop anything approaching the goal.", "Center Forward", 3, 2, R.drawable.forg, 1 ));
-        list_of_backups.add(new Player("3", "Backup3", "Some say Jack can jump to the ceiling of the stadium, though he's never needed to in a game.", "Center Defense", 5, 5, R.drawable.forg, 1 ));
-        list_of_backups.add(new Player("4", "Backup4", "Sister Jumpy has an incredible devotion to the sport, and the passion to win over her teammates", "Left Midfield", 6, 6, R.drawable.forg, 1 ));
+        list_of_backups.add(new Player(Long.parseLong("1"), "Backup1", "From the back swamps of Nantucket, this frog just keeps hopping!", "Center Midfield", 10, 4, R.drawable.forg, 1 ));
+        list_of_backups.add(new Player(Long.parseLong("2"), "Backup2", "Watch out- this little from fights dirty and will stop anything approaching the goal.", "Center Forward", 3, 2, R.drawable.forg, 1 ));
+        list_of_backups.add(new Player(Long.parseLong("3"), "Backup3", "Some say Jack can jump to the ceiling of the stadium, though he's never needed to in a game.", "Center Defense", 5, 5, R.drawable.forg, 1 ));
+        list_of_backups.add(new Player(Long.parseLong("4"), "Backup4", "Sister Jumpy has an incredible devotion to the sport, and the passion to win over her teammates", "Left Midfield", 6, 6, R.drawable.forg, 1 ));
 
         //System.out.println("PLAYERS SIZE: " + String.valueOf(list_of_players.size()));
 
