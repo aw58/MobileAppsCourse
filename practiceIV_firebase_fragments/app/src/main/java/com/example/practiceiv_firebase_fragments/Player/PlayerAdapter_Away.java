@@ -3,7 +3,6 @@ package com.example.practiceiv_firebase_fragments.Player;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,10 +20,7 @@ public class PlayerAdapter_Away extends RecyclerView.Adapter<PlayerAdapter_Away.
     //Local variables to keep track of products in the list
     private List<Player> players;
 
-    //determines whether the items can be selected
-    private Boolean isSelectable = true;
-
-    //default constructor
+       //default constructor
     public PlayerAdapter_Away() {
         this.players = new ArrayList<>();
     }
@@ -36,7 +32,7 @@ public class PlayerAdapter_Away extends RecyclerView.Adapter<PlayerAdapter_Away.
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.player_list_item_home, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.player_list_item_away, parent, false);
         return new ViewHolder(view);
     }
 
@@ -73,10 +69,6 @@ public class PlayerAdapter_Away extends RecyclerView.Adapter<PlayerAdapter_Away.
         return this.players.size();
     }
 
-    public void setSelectable(Boolean selectable){
-        isSelectable = selectable;
-    }
-
     public void clearPlayers(){
         players.clear();
         notifyDataSetChanged();
@@ -96,7 +88,6 @@ public class PlayerAdapter_Away extends RecyclerView.Adapter<PlayerAdapter_Away.
         public TextView viewholder_years_played_editable;
         public TextView viewholder_position_editable;
         public ImageView productImage;
-        public Button recruit_button;
 
         public ViewHolder(View itemView) {
             super(itemView);

@@ -72,16 +72,16 @@ public class OpponentsFragment extends Fragment {
         System.out.println("OPPONENTS!4 " + player_firebase_db);
         //retrieve the players
         // Query players from Firestore
-        FirebaseHelper.getInstance().getAllPlayers(
+        FirebaseHelper.getInstance().getAllOpponents(
                 queryDocumentSnapshots -> {
                     list_of_opponents.clear(); // Clear existing list
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                         Player player = document.toObject(Player.class);
-                        System.out.println("ADDING A PLAYER! INSIDE");
+                        System.out.println("ADDING A OPPONENT! INSIDE");
                         list_of_opponents.add(player);
-                        System.out.println("PLAYER ADDED TO AWAYYYYYY: " + player.getPlayer_name());
+                        System.out.println("OPPONENT ADDED TO AWAYYYYYY: " + player.getPlayer_name());
 
-                        System.out.println("PLAYERS");
+                        System.out.println("OPPONENTS");
                         for(int i = 0; i < list_of_opponents.size(); i++){
                             System.out.print("OPPONENTS here: ");
                             System.out.println(list_of_opponents.get(i).getPlayer_name());

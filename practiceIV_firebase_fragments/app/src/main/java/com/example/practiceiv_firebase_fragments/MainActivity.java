@@ -124,7 +124,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         //Add all the players to the database
+        System.out.println("CALLING LOAD PLAYERS");
         loadPlayersToDB();
+        //Add all the opponents to the database
+        System.out.println("CALLING LOAD OPPONENTS");
+        loadOpponentsToDB();
 
         // Update the title in the app_bar
         getSupportActionBar().setTitle("Home Team Roster");
@@ -173,6 +177,34 @@ public class MainActivity extends AppCompatActivity {
                     e -> Log.e("MainActivity", "Error adding player", e)
             );
             System.out.println("GOT THROUGH ADDING");
+        }
+    }
+
+    private void loadOpponentsToDB(){
+        //Create Player Objects
+        List<Player> list_of_opponents = new ArrayList<>();
+
+        //Add all player objects here
+        list_of_opponents.add(new Player("1", "Bartholomew", "From the back swamps of Nantucket, this frog just keeps hopping!", "Center Midfield", 10, 4, R.drawable.forg, 1 ));
+        list_of_opponents.add(new Player("2", "Richard", "Watch out- this little from fights dirty and will stop anything approaching the goal.", "Center Forward", 3, 2, R.drawable.forg, 1 ));
+        list_of_opponents.add(new Player("3", "Shawn", "Some say Jack can jump to the ceiling of the stadium, though he's never needed to in a game.", "Center Defense", 5, 5, R.drawable.forg, 1 ));
+        list_of_opponents.add(new Player("4", "Jake", "Sister Jumpy has an incredible devotion to the sport, and the passion to win over her teammates", "Left Midfield", 6, 6, R.drawable.forg, 1 ));
+        list_of_opponents.add(new Player("5", "Dude", "This frog can't be caught without their pursuer being covered in slime!", "Right Midfield", 5, 8, R.drawable.forg, 1 ));
+        list_of_opponents.add(new Player("6", "Porridge", "You'll never see him coming until it's too late. So fast that he's played for longer than he's lived, so he claims.", "Left Forward", 9, 2, R.drawable.forg, 1 ));
+        list_of_opponents.add(new Player("7", "Uhhh", "Just Dennis", "Right Forward", 0, 1, R.drawable.forg, 1 ));
+
+        //System.out.println("PLAYERS SIZE: " + String.valueOf(list_of_players.size()));
+
+        // Add players to Firestore
+        for(int i = 0; i < list_of_opponents.size(); i++){
+            System.out.println("ADDING A OPPONENT!");
+            Player player = list_of_opponents.get(i);
+            System.out.println("OPPONENT: " + list_of_opponents.get(i).getPlayer_name());
+            FirebaseHelper.getInstance().addOpponent(player,
+                    documentReference -> Log.d("MainActivity", "Opponent added successfully with ID: " + documentReference.getId()),
+                    e -> Log.e("MainActivity", "Error adding Opponent", e)
+            );
+            System.out.println("GOT THROUGH Opponent ADDING");
         }
     }
 }

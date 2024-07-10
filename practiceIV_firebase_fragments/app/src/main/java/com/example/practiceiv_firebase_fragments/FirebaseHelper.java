@@ -43,8 +43,22 @@ public class FirebaseHelper {
                 .addOnFailureListener(e -> Log.e("Firestore", "Error adding player", e));
     }
 
+    public void addOpponent(Player opponent, OnSuccessListener<DocumentReference> onSuccessListener, OnFailureListener onFailureListener) {
+        DocumentReference playerRef = db.collection("opponents").document(opponent.getPlayer_id());
+        playerRef.set(opponent)
+                .addOnSuccessListener(aVoid -> Log.d("Firestore", "Opponent added with custom ID: " + opponent.getPlayer_id()))
+                .addOnFailureListener(e -> Log.e("Firestore", "Error adding Opponent", e));
+    }
+
     public void getAllPlayers(OnSuccessListener<QuerySnapshot> onSuccessListener, OnFailureListener onFailureListener) {
         db.collection("players")
+                .get()
+                .addOnSuccessListener(onSuccessListener)
+                .addOnFailureListener(onFailureListener);
+    }
+
+    public void getAllOpponents(OnSuccessListener<QuerySnapshot> onSuccessListener, OnFailureListener onFailureListener) {
+        db.collection("opponents")
                 .get()
                 .addOnSuccessListener(onSuccessListener)
                 .addOnFailureListener(onFailureListener);
@@ -54,6 +68,22 @@ public class FirebaseHelper {
         // Update the player document in Firestore
         FirebaseHelper.getInstance().getDatabase()
                 .collection("players")
+                .document(playerID)
+                .set(player)
+                .addOnSuccessListener(aVoid -> {
+                    // Successfully updated the player
+                    Log.d("Firestore", "Player successfully updated!");
+                })
+                .addOnFailureListener(e -> {
+                    // Failed to update the player
+                    Log.e("Firestore", "Error updating player", e);
+                });
+    }
+
+    public void updateOpponent(String playerID, Player player){
+        // Update the player document in Firestore
+        FirebaseHelper.getInstance().getDatabase()
+                .collection("opponents")
                 .document(playerID)
                 .set(player)
                 .addOnSuccessListener(aVoid -> {
