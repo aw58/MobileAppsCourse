@@ -73,15 +73,15 @@ public class BackupsFragment extends Fragment {
                     list_of_backups.clear(); // Clear existing list
                     for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                         Player player = document.toObject(Player.class);
+                        System.out.println("LOCAL TO BACKUPS: ADDING " + player.getPlayer_name());
                         list_of_backups.add(player);
-
-                        for(int i = 0; i < list_of_backups.size(); i++){
-                            System.out.println(list_of_backups.get(i).getPlayer_name());
-                        }
-
-                        // Set player list to ViewModel
-                        backupsViewModel.setPlayerList(list_of_backups);
                     }
+                    for(int i = 0; i < list_of_backups.size(); i++){
+                        System.out.println(list_of_backups.get(i).getPlayer_name());
+                    }
+
+                    // Set player list to ViewModel
+                    backupsViewModel.setPlayerList(list_of_backups);
                 },
                 e -> Log.e("BackupsFragment", "Error querying players", e)
         );

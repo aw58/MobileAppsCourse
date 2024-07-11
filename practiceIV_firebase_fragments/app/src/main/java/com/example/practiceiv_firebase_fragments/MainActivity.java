@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.example.practiceiv_firebase_fragments.Player.Player;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -15,18 +14,14 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.practiceiv_firebase_fragments.databinding.ActivityMainBinding;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthMultiFactorException;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
@@ -38,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
     private Button logout_button;
+    private Button reset_button;
     private static final String TAG = "RosterFragment";
 
     private NavController navController;
@@ -47,23 +43,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        System.out.println("SOMETHING");
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-        System.out.println("SOMETHING1.5");
         setContentView(binding.getRoot());
-        System.out.println("SOMETHING1.75");
 
         setSupportActionBar(binding.appBarMain.toolbar);
-        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null)
-                        .setAnchorView(R.id.fab).show();
-            }
-        });
 
-        System.out.println("SOMETHING1.9");
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each
@@ -72,18 +56,14 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_roster, R.id.nav_backups, R.id.nav_opponents, R.id.nav_field)
                 .setOpenableLayout(drawer)
                 .build();
-        System.out.println("SOMETHING1.95");
         // Initialize NavController
         //NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         //navController = navHostFragment.getNavController();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        System.out.println("SOMETHING1.96");
 
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        System.out.println("SOMETHING1.97");
 
         NavigationUI.setupWithNavController(navigationView, navController);
-        System.out.println("SOMETHING2");
         //update the nav header with the user's information
         View headerView = navigationView.getHeaderView(0);
         /*
@@ -96,7 +76,6 @@ public class MainActivity extends AppCompatActivity {
         nav_user_name.setText(user_name);
         nav_user_email.setText(user_email);
         */
-        System.out.println("SOMETHING3");
         //link up the log out button with logout functionality
         logout_button = headerView.findViewById(R.id.logout_button);
         logout_button.setOnClickListener(new View.OnClickListener(){
@@ -106,32 +85,19 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        System.out.println("SOMETHING4");
-        //create the Firebase database
-        System.out.println("CREATING THE DATABASE");
-        player_firestore_db = FirebaseFirestore.getInstance();
 
-        //Clear the database
-        /*
-        System.out.println("CLEARING THE DB FROM MAIN");
-        FirebaseHelper.getInstance().clearCollection("players", new OnCompleteListener<QuerySnapshot>() {
+        //link up the reset_database button with logout functionality
+        reset_button = headerView.findViewById(R.id.reset_players);
+        reset_button.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                Log.d("MainActivity", "Collection successfully cleared");
+            public void onClick(View view){
+                resetDatabase();
             }
         });
-        */
 
-
-        //Add all the players to the database
-        System.out.println("CALLING LOAD PLAYERS");
-        loadPlayersToDB();
-        //Add all the backups to the database
-        System.out.println("CALLING LOAD OPPONENTS");
-        loadbackupsToDB();
-        //Add all the opponents to the database
-        System.out.println("CALLING LOAD OPPONENTS");
-        loadOpponentsToDB();
+        //create the Firebase database. No instantiation needed. Can use reset button.
+        System.out.println("CREATING THE DATABASE");
+        player_firestore_db = FirebaseFirestore.getInstance();
 
         // Update the title in the app_bar
         getSupportActionBar().setTitle("Home Team Roster");
@@ -212,15 +178,15 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void loadbackupsToDB(){
+    private void loadBackupsToDB(){
         //Create Player Objects
         List<Player> list_of_backups = new ArrayList<>();
 
         //Add all player objects here
-        list_of_backups.add(new Player(Long.parseLong("1"), "Backup1", "From the back swamps of Nantucket, this frog just keeps hopping!", "Center Midfield", 10, 4, R.drawable.forg, 1 ));
-        list_of_backups.add(new Player(Long.parseLong("2"), "Backup2", "Watch out- this little from fights dirty and will stop anything approaching the goal.", "Center Forward", 3, 2, R.drawable.forg, 1 ));
-        list_of_backups.add(new Player(Long.parseLong("3"), "Backup3", "Some say Jack can jump to the ceiling of the stadium, though he's never needed to in a game.", "Center Defense", 5, 5, R.drawable.forg, 1 ));
-        list_of_backups.add(new Player(Long.parseLong("4"), "Backup4", "Sister Jumpy has an incredible devotion to the sport, and the passion to win over her teammates", "Left Midfield", 6, 6, R.drawable.forg, 1 ));
+        list_of_backups.add(new Player(Long.parseLong("9"), "Backup1", "From the back swamps of Nantucket, this frog just keeps hopping!", "Center Midfield", 10, 4, R.drawable.forg, 1 ));
+        list_of_backups.add(new Player(Long.parseLong("10"), "Backup2", "Watch out- this little from fights dirty and will stop anything approaching the goal.", "Center Forward", 3, 2, R.drawable.forg, 1 ));
+        list_of_backups.add(new Player(Long.parseLong("11"), "Backup3", "Some say Jack can jump to the ceiling of the stadium, though he's never needed to in a game.", "Center Defense", 5, 5, R.drawable.forg, 1 ));
+        list_of_backups.add(new Player(Long.parseLong("12"), "Backup4", "Sister Jumpy has an incredible devotion to the sport, and the passion to win over her teammates", "Left Midfield", 6, 6, R.drawable.forg, 1 ));
 
         //System.out.println("PLAYERS SIZE: " + String.valueOf(list_of_players.size()));
 
@@ -235,5 +201,22 @@ public class MainActivity extends AppCompatActivity {
             );
             System.out.println("GOT THROUGH Backup ADDING");
         }
+    }
+
+    private void resetDatabase(){
+        FirebaseHelper.getInstance().clearCollection("players", new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                Log.d("MainActivity", "Players successfully cleared");
+                loadPlayersToDB();
+            }
+        });
+        FirebaseHelper.getInstance().clearCollection("backups", new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                Log.d("MainActivity", "Backups successfully cleared");
+                loadBackupsToDB();
+            }
+        });
     }
 }

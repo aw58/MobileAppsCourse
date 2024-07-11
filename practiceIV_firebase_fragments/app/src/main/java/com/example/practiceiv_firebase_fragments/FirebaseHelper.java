@@ -43,6 +43,13 @@ public class FirebaseHelper {
                 .addOnFailureListener(e -> Log.e("Firestore", "Error adding player", e));
     }
 
+    public void dropPlayer(Player player, OnSuccessListener<DocumentReference> onSuccessListener, OnFailureListener onFailureListener) {
+        DocumentReference playerRef = db.collection("players").document(player.getPlayer_id().toString());
+        playerRef.delete()
+                .addOnSuccessListener(aVoid -> Log.d("Firestore", "Player deleted with custom ID: " + player.getPlayer_id()))
+                .addOnFailureListener(e -> Log.e("Firestore", "Error deleting player", e));
+    }
+
     public void addOpponent(Player opponent, OnSuccessListener<DocumentReference> onSuccessListener, OnFailureListener onFailureListener) {
         DocumentReference playerRef = db.collection("opponents").document(opponent.getPlayer_id().toString());
         playerRef.set(opponent)
@@ -53,8 +60,8 @@ public class FirebaseHelper {
     public void addBackup(Player opponent, OnSuccessListener<DocumentReference> onSuccessListener, OnFailureListener onFailureListener) {
         DocumentReference playerRef = db.collection("backups").document(opponent.getPlayer_id().toString());
         playerRef.set(opponent)
-                .addOnSuccessListener(aVoid -> Log.d("Firestore", "Opponent added with custom ID: " + opponent.getPlayer_id()))
-                .addOnFailureListener(e -> Log.e("Firestore", "Error adding Opponent", e));
+                .addOnSuccessListener(aVoid -> Log.d("Firestore", "Backup added with custom ID: " + opponent.getPlayer_id()))
+                .addOnFailureListener(e -> Log.e("Firestore", "Error adding Backup", e));
     }
 
     public void getAllPlayers(OnSuccessListener<QuerySnapshot> onSuccessListener, OnFailureListener onFailureListener) {
@@ -128,6 +135,7 @@ public class FirebaseHelper {
 
     // Method to delete all documents from a collection
     public void clearCollection(String collectionName, OnCompleteListener<QuerySnapshot> onCompleteListener) {
+        System.out.println("CLEARING THE " + collectionName + " DATABASE");
         db.collection(collectionName)
                 .get()
                 .addOnCompleteListener(task -> {
@@ -137,9 +145,9 @@ public class FirebaseHelper {
                             db.collection(collectionName)
                                     .document(document.getId())
                                     .delete()
-                                    .addOnFailureListener(e -> Log.e("FirebaseHelper", "Error deleting document", e));
+                                    .addOnFailureListener(e -> Log.e("FirebaseHelper", "Error deleting document" + document.getId(), e));
                         }
-                        System.out.println("CLEARED DATABASE");
+                        System.out.println("CLEARED " + collectionName + " DATABASE");
                     } else {
                         Log.e("FirebaseHelper", "Error getting documents: ", task.getException());
                     }

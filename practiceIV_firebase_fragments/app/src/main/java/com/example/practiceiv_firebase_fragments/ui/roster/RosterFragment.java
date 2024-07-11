@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -21,13 +22,14 @@ import com.example.practiceiv_firebase_fragments.Player.Player;
 import com.example.practiceiv_firebase_fragments.Player.PlayerAdapter;
 import com.example.practiceiv_firebase_fragments.R;
 import com.example.practiceiv_firebase_fragments.databinding.FragmentRosterBinding;
+import com.google.android.material.badge.BadgeUtils;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class RosterFragment extends Fragment {
+public class RosterFragment extends Fragment implements PlayerAdapter.OnItemClickListener{
     private static final String TAG = "RosterFragment";
 
     private FragmentRosterBinding binding;
@@ -40,9 +42,11 @@ public class RosterFragment extends Fragment {
 
     private List<Player> list_of_players;
 
+    RosterViewModel rosterViewModel;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        RosterViewModel rosterViewModel = new ViewModelProvider(this).get(RosterViewModel.class);
+        rosterViewModel = new ViewModelProvider(this).get(RosterViewModel.class);
 
         binding = FragmentRosterBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -56,13 +60,15 @@ public class RosterFragment extends Fragment {
         }
 
         player_recyclerView = root.findViewById(R.id.player_recyclerView);
-        playerAdapter = new PlayerAdapter();
+        playerAdapter = new PlayerAdapter(this);
         player_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         player_recyclerView.setAdapter(playerAdapter);
 
         rosterViewModel.getPlayerListLiveData().observe(getViewLifecycleOwner(), players -> {
             // Update RecyclerView adapter with new player list
+            System.out.println("From within RosterFragment, saw that players changed and calling UpdateRosterList");
             playerAdapter.updateRosterList(players);
+            playerAdapter.notifyDataSetChanged();
         });
 
         // Get the Firebase database instance
@@ -100,5 +106,16 @@ public class RosterFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onDropItemClick(int position) {
+        Player player = list_of_players.get(position);
+
+        // Remove the item from the local data set
+        list_of_players.remove(position);
+        rosterViewModel.setPlayerList(list_of_players);
+        playerAdapter.notifyItemRemoved(position);
+        playerAdapter.notifyDataSetChanged();
     }
 }

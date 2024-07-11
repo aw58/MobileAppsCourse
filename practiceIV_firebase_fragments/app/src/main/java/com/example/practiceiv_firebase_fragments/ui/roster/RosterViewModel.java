@@ -26,4 +26,5 @@ public class RosterViewModel extends ViewModel {
     public LiveData<List<Player>> getPlayerListLiveData() {
         return playerListLiveData;
     }
+
 }
