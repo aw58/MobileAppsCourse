@@ -64,6 +64,13 @@ public class FirebaseHelper {
                 .addOnFailureListener(e -> Log.e("Firestore", "Error adding Backup", e));
     }
 
+    public void dropBackup(Player player, OnSuccessListener<DocumentReference> onSuccessListener, OnFailureListener onFailureListener) {
+        DocumentReference playerRef = db.collection("backups").document(player.getPlayer_id().toString());
+        playerRef.delete()
+                .addOnSuccessListener(aVoid -> Log.d("Firestore", "Backup deleted with custom ID: " + player.getPlayer_id()))
+                .addOnFailureListener(e -> Log.e("Firestore", "Error deleting Backup", e));
+    }
+
     public void getAllPlayers(OnSuccessListener<QuerySnapshot> onSuccessListener, OnFailureListener onFailureListener) {
         db.collection("players")
                 .get()
@@ -154,4 +161,6 @@ public class FirebaseHelper {
                     onCompleteListener.onComplete(task);
                 });
     }
+
+
 }

@@ -8,14 +8,18 @@ import android.view.Menu;
 import android.widget.Button;
 
 import com.example.practiceiv_firebase_fragments.Player.Player;
+import com.example.practiceiv_firebase_fragments.ui.roster.RosterFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -34,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private Button logout_button;
     private Button reset_button;
-    private static final String TAG = "RosterFragment";
 
     private NavController navController;
 
@@ -56,10 +59,11 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_roster, R.id.nav_backups, R.id.nav_opponents, R.id.nav_field)
                 .setOpenableLayout(drawer)
                 .build();
+
         // Initialize NavController
         //NavHostFragment navHostFragment = (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         //navController = navHostFragment.getNavController();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+        navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
 
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
 
@@ -91,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
         reset_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
+                System.out.println("RESET PLAYERS BUTTON PRESSED.");
                 resetDatabase();
             }
         });
@@ -209,14 +214,25 @@ public class MainActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 Log.d("MainActivity", "Players successfully cleared");
                 loadPlayersToDB();
+
+                FirebaseHelper.getInstance().clearCollection("backups", new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        Log.d("MainActivity", "Backups successfully cleared");
+                        loadBackupsToDB();
+
+
+                        System.out.println("REFRESHING THE FRAGMENT");
+                        // Get the NavController associated with your NavHostFragment or DrawerLayout
+                        NavController navController = Navigation.findNavController(MainActivity.this, R.id.nav_host_fragment_content_main);
+
+                        // Replace the current fragment with the new fragment
+                        navController.navigate(R.id.nav_roster);
+                    }
+                });
             }
         });
-        FirebaseHelper.getInstance().clearCollection("backups", new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                Log.d("MainActivity", "Backups successfully cleared");
-                loadBackupsToDB();
-            }
-        });
+
     }
+
 }

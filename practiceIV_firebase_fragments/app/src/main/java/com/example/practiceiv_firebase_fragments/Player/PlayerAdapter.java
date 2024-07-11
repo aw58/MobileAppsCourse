@@ -97,6 +97,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
 
                 //update the view
                 players.remove(position1);
+                notifyDataSetChanged();
             }
         });
     }

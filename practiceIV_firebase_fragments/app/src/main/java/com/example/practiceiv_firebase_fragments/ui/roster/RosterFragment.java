@@ -46,6 +46,7 @@ public class RosterFragment extends Fragment implements PlayerAdapter.OnItemClic
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+        System.out.println("ROSTER FRAGMENT STARTED");
         rosterViewModel = new ViewModelProvider(this).get(RosterViewModel.class);
 
         binding = FragmentRosterBinding.inflate(inflater, container, false);
@@ -118,4 +119,5 @@ public class RosterFragment extends Fragment implements PlayerAdapter.OnItemClic
         playerAdapter.notifyItemRemoved(position);
         playerAdapter.notifyDataSetChanged();
     }
+
 }
