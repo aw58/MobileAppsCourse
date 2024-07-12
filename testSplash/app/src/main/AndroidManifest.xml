@@ -10,15 +10,13 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.PracticeIV_firebase_fragments"
-        android:enableOnBackInvokedCallback="true"
+        android:theme="@style/Theme.TestSplash"
         tools:targetApi="31">
 
         <activity
             android:name=".SplashActivity"
             android:exported="true"
-            android:label="splash_activity"
-            android:theme="@style/Theme.PracticeIV_firebase_fragments.NoActionBar">
+            android:theme="@style/Theme.TestSplash.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,21 +27,9 @@
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.PracticeIV_firebase_fragments.NoActionBar">
-        </activity>
-        <activity
-            android:name=".LoginActivity"
-            android:exported="true"
-            android:label="login_activity"
-            android:theme="@style/Theme.PracticeIV_firebase_fragments.NoActionBar">
-        </activity>
-        <activity
-            android:name=".RegisterActivity"
-            android:exported="true"
-            android:label="register_activity"
-            android:theme="@style/Theme.PracticeIV_firebase_fragments.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.TestSplash.NoActionBar">
 
+        </activity>
     </application>
 
 </manifest>

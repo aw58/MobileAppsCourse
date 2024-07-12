@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "243742196967",
+    "project_id": "apphwiv-awear",
+    "storage_bucket": "apphwiv-awear.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243742196967:android:8e4ef977ca66514f9cce42",
+        "android_client_info": {
+          "package_name": "com.example.practiceiv_firebase_fragments"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwI48gMxZXhV6fRYy4_oQ0vsZPJEmWsQE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
