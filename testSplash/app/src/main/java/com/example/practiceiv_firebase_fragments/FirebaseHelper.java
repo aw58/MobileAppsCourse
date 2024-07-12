@@ -18,8 +18,6 @@ public class FirebaseHelper {
 
     private static FirebaseHelper instance;
     private final FirebaseFirestore db;
-    private static final String TAG = "RosterFragment";
-
 
     private FirebaseHelper() {
         db = FirebaseFirestore.getInstance();

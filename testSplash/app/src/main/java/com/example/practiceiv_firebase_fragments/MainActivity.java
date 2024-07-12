@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.practiceiv_firebase_fragments.Player.Player;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(navigationView, navController);
         //update the nav header with the user's information
         View headerView = navigationView.getHeaderView(0);
-        /*
+
         String user_email = (String) getIntent().getSerializableExtra("user_email");
         assert user_email != null;
         String user_name = user_email.split("@")[0];
@@ -75,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
         TextView nav_user_email = headerView.findViewById(R.id.nav_user_email_textView);
         nav_user_name.setText(user_name);
         nav_user_email.setText(user_email);
-        */
+
         //link up the log out button with logout functionality
         logout_button = headerView.findViewById(R.id.logout_button);
         logout_button.setOnClickListener(new View.OnClickListener(){

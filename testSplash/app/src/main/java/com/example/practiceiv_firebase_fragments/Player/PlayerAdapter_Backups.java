@@ -96,35 +96,35 @@ public class PlayerAdapter_Backups extends RecyclerView.Adapter<PlayerAdapter_Ba
                                     setTaken(true);
                                 }
                             }
+
+                            if(getTaken()) {
+                                Toast myToast = Toast.makeText(view.getContext(), "This position is taken. Drop the player before recruiting.", Toast.LENGTH_SHORT);
+                                myToast.show();
+                                setTaken(false);
+                            }
+                            else{
+                                //successful recruitment.
+                                //update the Player Database
+                                FirebaseHelper.getInstance().addPlayer(toRecruit,
+                                        documentReference -> Log.d("AdapterBackupsFragment", "Player added successfully with ID: " + documentReference.getId()),
+                                        e -> Log.e("AdapterBackupsFragment", "Error added player", e)
+                                );
+
+                                //remove from the Backup Database
+                                FirebaseHelper.getInstance().dropBackup(toRecruit,
+                                        documentReference -> Log.d("AdapterBackupsFragment", "Player drop successfully with ID: " + documentReference.getId()),
+                                        e -> Log.e("AdapterBackupsFragment", "Error dropping backup", e)
+                                );
+
+                                //update the view
+                                players.remove(position1);
+                                notifyDataSetChanged();
+                                setTaken(false);
+                            }
+
                         },
                         e -> Log.e("BackupsFragment", "Error querying players", e)
                 );
-
-                if(getTaken()) {
-                    Toast myToast = Toast.makeText(view.getContext(), "This position is taken. Drop the player before recruiting.", Toast.LENGTH_SHORT);
-                    myToast.show();
-                    setTaken(false);
-                }
-                else{
-                    //successful recruitment.
-                    //update the Player Database
-                    FirebaseHelper.getInstance().addPlayer(toRecruit,
-                            documentReference -> Log.d("AdapterBackupsFragment", "Player added successfully with ID: " + documentReference.getId()),
-                            e -> Log.e("AdapterBackupsFragment", "Error added player", e)
-                    );
-
-                    //remove from the Backup Database
-                    FirebaseHelper.getInstance().dropBackup(toRecruit,
-                            documentReference -> Log.d("AdapterBackupsFragment", "Player drop successfully with ID: " + documentReference.getId()),
-                            e -> Log.e("AdapterBackupsFragment", "Error dropping backup", e)
-                    );
-
-                    //update the view
-                    players.remove(position1);
-                    notifyDataSetChanged();
-                    setTaken(false);
-                }
-
 
             }
         });
