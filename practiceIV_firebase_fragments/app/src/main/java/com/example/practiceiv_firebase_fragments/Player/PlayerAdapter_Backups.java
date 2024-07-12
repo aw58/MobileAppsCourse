@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.practiceiv_firebase_fragments.FirebaseHelper;
 import com.example.practiceiv_firebase_fragments.R;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.protobuf.Internal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,8 @@ public class PlayerAdapter_Backups extends RecyclerView.Adapter<PlayerAdapter_Ba
 
     //Local variables to keep track of products in the list
     private List<Player> players;
+    private List<Player> players_on_roster;
+    private Boolean taken = false;
 
 
     //default constructor
@@ -66,7 +69,6 @@ public class PlayerAdapter_Backups extends RecyclerView.Adapter<PlayerAdapter_Ba
         });
 
         //onclick behavior for each recruit button
-        //TODO
         holder.recruit_button.setOnClickListener(new View.OnClickListener() {
             @Override
 
@@ -77,47 +79,53 @@ public class PlayerAdapter_Backups extends RecyclerView.Adapter<PlayerAdapter_Ba
                 System.out.println(("YOU ARE RECRUITING: " + toRecruit.getPlayer_name()));
                 System.out.println(("THEIR ID IS: " + toRecruit.getPlayer_id()));
 
-                //Check the players for one with the same position.
-                //if same position exists, Toast and do not recruit
-                List<Player> list_of_players = new ArrayList<Player>();
+                players_on_roster = new ArrayList<Player>();
                 //retrieve the players
                 // Query players from Firestore
-                FirebaseHelper.getInstance().getAllBackups(
+                FirebaseHelper.getInstance().getAllPlayers(
                         queryDocumentSnapshots -> {
+                            players_on_roster.clear(); // Clear existing list
                             for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
                                 Player player = document.toObject(Player.class);
-                                list_of_players.add(player);
+                                System.out.println("LOCAL TO BACKUPS: ADDING " + player.getPlayer_name());
+                                players_on_roster.add(player);
+                            }
+                            for(int i = 0; i < players_on_roster.size(); i++){
+                                System.out.println("Player on the roster: " + players_on_roster.get(i).getPlayer_name());
+                                if(players_on_roster.get(i).getPlayer_position().equals(players_position)){
+                                    System.out.println("This position is taken by " + players_on_roster.get(i).getPlayer_name());
+                                    setTaken(true);
+                                }
                             }
                         },
-                        e -> Log.e("AdapterBackupsFragment", "Error querying players", e)
+                        e -> Log.e("BackupsFragment", "Error querying players", e)
                 );
 
-                Boolean found = false;
-                for(int i = 0; i < players.size(); i++){
-                    if(players.get(i).getPlayer_position().equals(players_position)){
-                        found = true;
-                        Toast myToast = Toast.makeText(view.getContext(), "This position is taken. Drop the player before recruiting.", Toast.LENGTH_SHORT);
-                        myToast.show();
-                        return;
-                    }
+                if(getTaken()) {
+                    Toast myToast = Toast.makeText(view.getContext(), "This position is taken. Drop the player before recruiting.", Toast.LENGTH_SHORT);
+                    myToast.show();
+                    setTaken(false);
+                }
+                else{
+                    //successful recruitment.
+                    //update the Player Database
+                    FirebaseHelper.getInstance().addPlayer(toRecruit,
+                            documentReference -> Log.d("AdapterBackupsFragment", "Player added successfully with ID: " + documentReference.getId()),
+                            e -> Log.e("AdapterBackupsFragment", "Error added player", e)
+                    );
+
+                    //remove from the Backup Database
+                    FirebaseHelper.getInstance().dropBackup(toRecruit,
+                            documentReference -> Log.d("AdapterBackupsFragment", "Player drop successfully with ID: " + documentReference.getId()),
+                            e -> Log.e("AdapterBackupsFragment", "Error dropping backup", e)
+                    );
+
+                    //update the view
+                    players.remove(position1);
+                    notifyDataSetChanged();
+                    setTaken(false);
                 }
 
-                //successful recruitment.
-                //update the Player Database
-                FirebaseHelper.getInstance().addPlayer(toRecruit,
-                        documentReference -> Log.d("AdapterBackupsFragment", "Player added successfully with ID: " + documentReference.getId()),
-                        e -> Log.e("AdapterBackupsFragment", "Error added player", e)
-                );
-
-                //remove from the Backup Database
-                FirebaseHelper.getInstance().dropBackup(toRecruit,
-                        documentReference -> Log.d("AdapterBackupsFragment", "Player drop successfully with ID: " + documentReference.getId()),
-                        e -> Log.e("AdapterBackupsFragment", "Error dropping backup", e)
-                );
-
-                //update the view
-                list_of_players.remove(position1);
-                notifyDataSetChanged();
 
             }
         });
@@ -125,6 +133,10 @@ public class PlayerAdapter_Backups extends RecyclerView.Adapter<PlayerAdapter_Ba
 
 
     //Getters and Setters
+
+    private void setTaken(Boolean taken){ this.taken = taken;}
+
+    private Boolean getTaken(){return this.taken;}
 
     @Override
     public int getItemCount() {
