@@ -30,6 +30,18 @@
             android:theme="@style/Theme.TestSplash.NoActionBar">
 
         </activity>
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true"
+            android:label="login_activity"
+            android:theme="@style/Theme.TestSplash.NoActionBar">
+        </activity>
+        <activity
+            android:name=".RegisterActivity"
+            android:exported="true"
+            android:label="register_activity"
+            android:theme="@style/Theme.TestSplash.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

@@ -17,7 +17,7 @@ public class SplashActivity extends AppCompatActivity {
         // Delay to simulate loading process
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             // Start the main activity
-            Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+            Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
         }, 3000); // 3 seconds delay
