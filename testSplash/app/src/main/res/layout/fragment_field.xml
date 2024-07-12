@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/field"
+    tools:context=".ui.field.FieldFragment">
+
+    <ImageButton
+        android:id="@+id/opp_right_back"
+        android:contentDescription="opp_right_back"
+        android:layout_width="58dp"
+        android:layout_height="49dp"
+        android:layout_marginEnd="56dp"
+        android:background="@drawable/opp_button_background"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toStartOf="@+id/opp_mid_back"
+        app:layout_constraintTop_toTopOf="@+id/opp_mid_back"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/opp_mid_back"
+        android:contentDescription="opp_mid_back"
+        android:layout_width="58dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="36dp"
+        android:background="@drawable/opp_button_background"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="@+id/opp_goalie"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/opp_goalie"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/opp_left_back"
+        android:contentDescription="opp_left_back"
+        android:layout_width="58dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="44dp"
+        android:background="@drawable/opp_button_background"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toEndOf="@+id/opp_mid_back"
+        app:layout_constraintTop_toTopOf="@+id/opp_mid_back"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/opp_left_mid"
+        android:layout_width="58dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="44dp"
+        android:background="@drawable/opp_button_background"
+        android:contentDescription="opp_left_mid"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="@+id/opp_left_back"
+        app:layout_constraintHorizontal_bias="0.866"
+        app:layout_constraintStart_toStartOf="@+id/opp_left_back"
+        app:layout_constraintTop_toTopOf="@+id/opp_mid_mid"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/opp_mid_mid"
+        android:layout_width="58dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="56dp"
+        android:background="@drawable/opp_button_background"
+        android:contentDescription="opp_mid_mid"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="@+id/opp_mid_back"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/opp_mid_back"
+        app:layout_constraintTop_toBottomOf="@+id/opp_mid_back"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/opp_right_front"
+        android:layout_width="58dp"
+        android:layout_height="49dp"
+        android:layout_marginEnd="56dp"
+        android:background="@drawable/opp_button_background"
+        android:contentDescription="opp_right_front"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="@+id/opp_right_mid"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/opp_right_mid"
+        app:layout_constraintTop_toTopOf="@+id/opp_mid_front"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/opp_right_mid"
+        android:contentDescription="opp_right_mid"
+        android:layout_width="58dp"
+        android:layout_height="49dp"
+        android:layout_marginEnd="56dp"
+        android:background="@drawable/opp_button_background"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintStart_toStartOf="@+id/opp_right_back"
+        app:layout_constraintTop_toTopOf="@+id/opp_mid_mid"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/opp_mid_front"
+        android:layout_width="58dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="56dp"
+        android:background="@drawable/opp_button_background"
+        android:contentDescription="opp_mid_front"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="@+id/opp_mid_mid"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/opp_mid_mid"
+        app:layout_constraintTop_toBottomOf="@+id/opp_mid_mid"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/opp_left_front"
+        android:layout_width="58dp"
+        android:layout_height="49dp"
+        android:background="@drawable/opp_button_background"
+        android:contentDescription="opp_left_front"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintEnd_toEndOf="@+id/opp_left_mid"
+        app:layout_constraintStart_toStartOf="@+id/opp_left_mid"
+        app:layout_constraintTop_toTopOf="@+id/opp_mid_front"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/opp_goalie"
+        android:contentDescription="opponent_goalie"
+        android:layout_width="58dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="48dp"
+        android:scaleType="fitCenter"
+        android:background="@drawable/opp_button_background"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/home_goalie"
+        android:contentDescription="home_goalie"
+        android:layout_width="58dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="48dp"
+        android:background="@drawable/home_button_background"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/home_right_front"
+        android:layout_width="58dp"
+        android:layout_height="49dp"
+        android:contentDescription="home_right_front"
+        android:background="@drawable/home_button_background"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/home_mid_front"
+        app:layout_constraintEnd_toEndOf="@+id/home_right_mid"
+        app:layout_constraintStart_toStartOf="@+id/home_right_mid"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/home_mid_back"
+        android:layout_width="58dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="32dp"
+        android:contentDescription="home_mid_back"
+        android:background="@drawable/home_button_background"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/home_goalie"
+        app:layout_constraintEnd_toEndOf="@+id/home_goalie"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/home_goalie"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/home_right_back"
+        android:layout_width="58dp"
+        android:layout_height="49dp"
+        android:layout_marginStart="44dp"
+        android:contentDescription="home_right_back"
+        android:background="@drawable/home_button_background"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/home_mid_back"
+        app:layout_constraintStart_toEndOf="@+id/home_mid_back"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/home_left_mid"
+        android:layout_width="58dp"
+        android:layout_height="49dp"
+        android:contentDescription="home_left_mid"
+        android:background="@drawable/home_button_background"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/home_mid_mid"
+        app:layout_constraintEnd_toEndOf="@+id/home_left_back"
+        app:layout_constraintStart_toStartOf="@+id/home_left_back"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/home_mid_mid"
+        android:layout_width="58dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="32dp"
+        android:contentDescription="home_mid_mid"
+        android:background="@drawable/home_button_background"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/home_mid_back"
+        app:layout_constraintEnd_toEndOf="@+id/home_mid_back"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/home_mid_back"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/home_right_mid"
+        android:layout_width="58dp"
+        android:layout_height="49dp"
+        android:contentDescription="home_right_mid"
+        android:background="@drawable/home_button_background"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/home_mid_mid"
+        app:layout_constraintEnd_toEndOf="@+id/home_right_back"
+        app:layout_constraintStart_toStartOf="@+id/home_right_back"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/home_left_front"
+        android:layout_width="58dp"
+        android:layout_height="49dp"
+        android:contentDescription="home_left_front"
+        android:background="@drawable/home_button_background"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toBottomOf="@+id/home_mid_front"
+        app:layout_constraintEnd_toEndOf="@+id/home_left_mid"
+        app:layout_constraintStart_toStartOf="@+id/home_left_mid"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/home_mid_front"
+        android:layout_width="58dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="28dp"
+        android:contentDescription="home_mid_front"
+        android:background="@drawable/home_button_background"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        app:layout_constraintBottom_toTopOf="@+id/home_mid_mid"
+        app:layout_constraintEnd_toEndOf="@+id/home_mid_mid"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/home_mid_mid"
+        tools:src="@tools:sample/avatars" />
+
+    <ImageButton
+        android:id="@+id/home_left_back"
+        android:layout_width="58dp"
+        android:layout_height="49dp"
+        android:layout_marginEnd="48dp"
+        android:background="@drawable/home_button_background"
+        android:padding="8dp"
+        android:scaleType="fitCenter"
+        android:contentDescription="home_left_back"
+        app:layout_constraintBottom_toBottomOf="@+id/home_mid_back"
+        app:layout_constraintEnd_toStartOf="@+id/home_mid_back"
+        tools:src="@tools:sample/avatars" />
+</androidx.constraintlayout.widget.ConstraintLayout>
