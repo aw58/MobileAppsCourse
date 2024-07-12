@@ -131,12 +131,12 @@ public class MainActivity extends AppCompatActivity {
         list_of_players.add(new Player(Long.parseLong("2"), "Maple the Unsheathed", "Watch out- this little from fights dirty and will stop anything approaching the goal.", "Center Forward", 3, 2, R.drawable.maple, 1 ));
         list_of_players.add(new Player(Long.parseLong("3"), "Crazy Jack", "Some say Jack can jump to the ceiling of the stadium, though he's never needed to in a game.", "Center Defense", 5, 5, R.drawable.crazy_jack, 1 ));
         list_of_players.add(new Player(Long.parseLong("4"), "Sister Jumpy", "Sister Jumpy has an incredible devotion to the sport, and the passion to win over her teammates", "Left Midfield", 6, 6, R.drawable.sistr_jumpy, 1 ));
-        list_of_players.add(new Player(Long.parseLong("5"), "Slimester the Slippery", "This frog can't be caught without their pursuer being covered in slime!", "Right Midfield", 5, 8, R.drawable.slimester, 1 ));
+        list_of_players.add(new Player(Long.parseLong("5"), "Slimester the Slippery", "This frog can't be caught without their pursuer being covered in slime!", "Right Midfield", 5, 6, R.drawable.slimester, 1 ));
         list_of_players.add(new Player(Long.parseLong("6"), "Broccoli the Camouflaged", "You'll never see him coming until it's too late. So fast that he's played for longer than he's lived, so he claims.", "Left Forward", 9, 2, R.drawable.broccoli, 0 ));
-        list_of_players.add(new Player(Long.parseLong("7"), "Dennis", "Just Dennis", "Right Forward", 0, 1, R.drawable.dennis, 0 ));
-        list_of_players.add(new Player(Long.parseLong("8"), "Hopper", "Just Dennis", "Right Defense", 0, 1, R.drawable.hopper, 0 ));
-        list_of_players.add(new Player(Long.parseLong("15"), "Fortran", "Just Dennis", "Left Defense", 0, 1, R.drawable.fortran, 0 ));
-        list_of_players.add(new Player(Long.parseLong("16"), "Peanuts", "Just Dennis", "Goalie", 0, 1, R.drawable.peanuts, 0 ));
+        list_of_players.add(new Player(Long.parseLong("7"), "Dennis", "Just Dennis", "Right Forward", 0, 9, R.drawable.dennis, 0 ));
+        list_of_players.add(new Player(Long.parseLong("8"), "Hopper", "Just Dennis", "Right Defense", 5, 8, R.drawable.hopper, 0 ));
+        list_of_players.add(new Player(Long.parseLong("15"), "Fortran", "Just Dennis", "Left Defense", 1, 3, R.drawable.fortran, 0 ));
+        list_of_players.add(new Player(Long.parseLong("16"), "Peanuts", "Just Dennis", "Goalie", 0, 2, R.drawable.peanuts, 0 ));
 
         //System.out.println("PLAYERS SIZE: " + String.valueOf(list_of_players.size()));
 
@@ -164,10 +164,10 @@ public class MainActivity extends AppCompatActivity {
         list_of_opponents.add(new Player(Long.parseLong("4"), "Jake", "Sister Jumpy has an incredible devotion to the sport, and the passion to win over her teammates", "Left Midfield", 6, 6, R.drawable.jake, 1 ));
         list_of_opponents.add(new Player(Long.parseLong("5"), "Dude", "This frog can't be caught without their pursuer being covered in slime!", "Right Midfield", 5, 8, R.drawable.dude, 1 ));
         list_of_opponents.add(new Player(Long.parseLong("6"), "Porridge", "You'll never see him coming until it's too late. So fast that he's played for longer than he's lived, so he claims.", "Left Forward", 9, 2, R.drawable.porridge, 1 ));
-        list_of_opponents.add(new Player(Long.parseLong("7"), "Hambone", "Just Hambone", "Right Forward", 0, 1, R.drawable.hambone, 1 ));
-        list_of_opponents.add(new Player(Long.parseLong("8"), "Ribeye", "Just Hambone", "Left Defense", 0, 1, R.drawable.richard, 1 ));
-        list_of_opponents.add(new Player(Long.parseLong("9"), "Legz", "Just Hambone", "Right Defense", 0, 1, R.drawable.legz, 1 ));
-        list_of_opponents.add(new Player(Long.parseLong("10"), "ForDays", "Just Hambone", "Goalie", 0, 1, R.drawable.fordayz, 1 ));
+        list_of_opponents.add(new Player(Long.parseLong("7"), "Hambone", "Just Hambone", "Right Forward", 0, 3, R.drawable.hambone, 1 ));
+        list_of_opponents.add(new Player(Long.parseLong("8"), "Ribeye", "Just Hambone", "Left Defense", 3, 4, R.drawable.richard, 1 ));
+        list_of_opponents.add(new Player(Long.parseLong("9"), "Legz", "Just Hambone", "Right Defense", 1, 8, R.drawable.legz, 1 ));
+        list_of_opponents.add(new Player(Long.parseLong("10"), "ForDays", "Just Hambone", "Goalie", 2, 4, R.drawable.fordayz, 1 ));
 
         //System.out.println("PLAYERS SIZE: " + String.valueOf(list_of_players.size()));
 
@@ -193,8 +193,8 @@ public class MainActivity extends AppCompatActivity {
         list_of_backups.add(new Player(Long.parseLong("10"), "Jerome", "Watch out- this little from fights dirty and will stop anything approaching the goal.", "Center Forward", 3, 2, R.drawable.jerome, 1 ));
         list_of_backups.add(new Player(Long.parseLong("11"), "Thursday", "Some say Jack can jump to the ceiling of the stadium, though he's never needed to in a game.", "Center Defense", 5, 5, R.drawable.thursday, 1 ));
         list_of_backups.add(new Player(Long.parseLong("12"), "Isa", "Sister Jumpy has an incredible devotion to the sport, and the passion to win over her teammates", "Left Midfield", 6, 6, R.drawable.isa, 1 ));
-        list_of_backups.add(new Player(Long.parseLong("13"), "Bella", "Sister Jumpy has an incredible devotion to the sport, and the passion to win over her teammates", "Right Defense", 6, 6, R.drawable.bella, 1 ));
-        list_of_backups.add(new Player(Long.parseLong("14"), "Ribber", "Sister Jumpy has an incredible devotion to the sport, and the passion to win over her teammates", "Goalie", 6, 6, R.drawable.ribber, 1 ));
+        list_of_backups.add(new Player(Long.parseLong("13"), "Bella", "Sister Jumpy has an incredible devotion to the sport, and the passion to win over her teammates", "Right Defense", 7, 7, R.drawable.bella, 1 ));
+        list_of_backups.add(new Player(Long.parseLong("14"), "Ribber", "Sister Jumpy has an incredible devotion to the sport, and the passion to win over her teammates", "Goalie", 8, 8, R.drawable.ribber, 1 ));
 
         //System.out.println("PLAYERS SIZE: " + String.valueOf(list_of_players.size()));
 
