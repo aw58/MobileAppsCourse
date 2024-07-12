@@ -24,8 +24,6 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
     //Local variables to keep track of players in the list
     private List<Player> players;
 
-    //determines whether the items can be selected
-    private Boolean isSelectable = true;
 
     private AdapterView.OnItemClickListener listener;
 
@@ -36,7 +34,6 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
 
     //default constructor
     public PlayerAdapter(OnItemClickListener listener) {
-
         this.players = new ArrayList<>();
     }
 
@@ -109,10 +106,6 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
     public int getItemCount() {
         //System.out.println("THE NUMBER OF PRODUCTS IS " + String.valueOf(this.products.size()));
         return this.players.size();
-    }
-
-    public void setSelectable(Boolean selectable){
-        isSelectable = selectable;
     }
 
     public void clearPlayers(){

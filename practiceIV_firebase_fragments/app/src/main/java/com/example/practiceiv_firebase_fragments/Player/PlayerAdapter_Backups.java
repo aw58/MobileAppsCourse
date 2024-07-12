@@ -1,16 +1,20 @@
 package com.example.practiceiv_firebase_fragments.Player;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.practiceiv_firebase_fragments.FirebaseHelper;
 import com.example.practiceiv_firebase_fragments.R;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,10 +69,56 @@ public class PlayerAdapter_Backups extends RecyclerView.Adapter<PlayerAdapter_Ba
         //TODO
         holder.recruit_button.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                //update the Player to be "recruited" or not based on the text on the button
-                //update the button text
-                //update the Database and RecyclerView
+
+            public void onClick(View view){
+                //get the player information to recruit
+                Player toRecruit = players.get(position1);
+                String players_position = toRecruit.getPlayer_position();
+                System.out.println(("YOU ARE RECRUITING: " + toRecruit.getPlayer_name()));
+                System.out.println(("THEIR ID IS: " + toRecruit.getPlayer_id()));
+
+                //Check the players for one with the same position.
+                //if same position exists, Toast and do not recruit
+                List<Player> list_of_players = new ArrayList<Player>();
+                //retrieve the players
+                // Query players from Firestore
+                FirebaseHelper.getInstance().getAllBackups(
+                        queryDocumentSnapshots -> {
+                            for (QueryDocumentSnapshot document : queryDocumentSnapshots) {
+                                Player player = document.toObject(Player.class);
+                                list_of_players.add(player);
+                            }
+                        },
+                        e -> Log.e("AdapterBackupsFragment", "Error querying players", e)
+                );
+
+                Boolean found = false;
+                for(int i = 0; i < players.size(); i++){
+                    if(players.get(i).getPlayer_position().equals(players_position)){
+                        found = true;
+                        Toast myToast = Toast.makeText(view.getContext(), "This position is taken. Drop the player before recruiting.", Toast.LENGTH_SHORT);
+                        myToast.show();
+                        return;
+                    }
+                }
+
+                //successful recruitment.
+                //update the Player Database
+                FirebaseHelper.getInstance().addPlayer(toRecruit,
+                        documentReference -> Log.d("AdapterBackupsFragment", "Player added successfully with ID: " + documentReference.getId()),
+                        e -> Log.e("AdapterBackupsFragment", "Error added player", e)
+                );
+
+                //remove from the Backup Database
+                FirebaseHelper.getInstance().dropBackup(toRecruit,
+                        documentReference -> Log.d("AdapterBackupsFragment", "Player drop successfully with ID: " + documentReference.getId()),
+                        e -> Log.e("AdapterBackupsFragment", "Error dropping backup", e)
+                );
+
+                //update the view
+                list_of_players.remove(position1);
+                notifyDataSetChanged();
+
             }
         });
     }
