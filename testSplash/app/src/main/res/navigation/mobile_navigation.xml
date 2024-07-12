@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_roster">
+
+    <fragment
+        android:id="@+id/nav_roster"
+        android:name="com.example.practiceiv_firebase_fragments.ui.roster.RosterFragment"
+        android:label="Roster"
+        tools:layout="@layout/fragment_roster">
+        <action
+            android:id="@+id/action_to_your_new_fragment"
+            app:destination="@id/nav_roster"
+            app:popUpTo="@id/nav_roster"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_backups"
+        android:name="com.example.practiceiv_firebase_fragments.ui.backups.BackupsFragment"
+        android:label="Backups"
+        tools:layout="@layout/fragment_backups" />
+
+    <fragment
+        android:id="@+id/nav_opponents"
+        android:name="com.example.practiceiv_firebase_fragments.ui.opponents.OpponentsFragment"
+
+        android:label="Opponents"
+        tools:layout="@layout/fragment_opponents" />
+
+    <fragment
+        android:id="@+id/nav_field"
+        android:name="com.example.practiceiv_firebase_fragments.ui.field.FieldFragment"
+        android:label="Field"
+        tools:layout="@layout/fragment_field" />
+</navigation>

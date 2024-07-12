@@ -1,8 +1,10 @@
 package com.example.practiceiv_firebase_fragments.Player;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.practiceiv_firebase_fragments.FirebaseHelper;
 import com.example.practiceiv_firebase_fragments.R;
 
 import java.util.ArrayList;
@@ -18,14 +21,19 @@ import java.util.List;
 
 public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder> {
 
-    //Local variables to keep track of products in the list
+    //Local variables to keep track of players in the list
     private List<Player> players;
 
-    //determines whether the items can be selected
-    private Boolean isSelectable = true;
+
+    private AdapterView.OnItemClickListener listener;
+
+
+    public interface OnItemClickListener {
+        void onDropItemClick(int position);
+    }
 
     //default constructor
-    public PlayerAdapter() {
+    public PlayerAdapter(OnItemClickListener listener) {
         this.players = new ArrayList<>();
     }
 
@@ -36,7 +44,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.player_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.player_list_item_home, parent, false);
         return new ViewHolder(view);
     }
 
@@ -64,13 +72,29 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
         });
 
         //onclick behavior for each recruit button
-        //TODO
-        holder.recruit_button.setOnClickListener(new View.OnClickListener() {
+        holder.drop_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                //update the Player to be "recruited" or not based on the text on the button
-                //update the button text
-                //update the Database and RecyclerView
+                //get the player information to drop
+                Player toDrop = players.get(position1);
+                System.out.println(("YOU ARE DROPPING: " + toDrop.getPlayer_name()));
+                System.out.println(("THEIR ID IS: " + toDrop.getPlayer_id()));
+
+                //update the Player Database
+                FirebaseHelper.getInstance().dropPlayer(toDrop,
+                        documentReference -> Log.d("PlayerAdapter", "Player dropped successfully with ID: " + documentReference.getId()),
+                        e -> Log.e("PlayerAdapter", "Error dropping player", e)
+                );
+
+                //Add to the Backup Database
+                FirebaseHelper.getInstance().addBackup(toDrop,
+                        documentReference -> Log.d("PlayerAdapter", "Player added to backups successfully with ID: " + documentReference.getId()),
+                        e -> Log.e("PlayerAdapter", "Error adding backup", e)
+                );
+
+                //update the view
+                players.remove(position1);
+                notifyDataSetChanged();
             }
         });
     }
@@ -82,10 +106,6 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
     public int getItemCount() {
         //System.out.println("THE NUMBER OF PRODUCTS IS " + String.valueOf(this.products.size()));
         return this.players.size();
-    }
-
-    public void setSelectable(Boolean selectable){
-        isSelectable = selectable;
     }
 
     public void clearPlayers(){
@@ -107,7 +127,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
         public TextView viewholder_years_played_editable;
         public TextView viewholder_position_editable;
         public ImageView productImage;
-        public Button recruit_button;
+        public Button drop_button;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -117,7 +137,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
             viewholder_years_played_editable = itemView.findViewById(R.id.item_years_played_editable);
             viewholder_position_editable = itemView.findViewById(R.id.item_position_editable);
             productImage = itemView.findViewById(R.id.imageView);
-            recruit_button = itemView.findViewById(R.id.recruit_button);
+            drop_button = itemView.findViewById(R.id.drop_button);
         }
     }
 }
