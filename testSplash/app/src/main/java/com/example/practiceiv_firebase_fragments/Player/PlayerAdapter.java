@@ -18,7 +18,8 @@ import com.example.practiceiv_firebase_fragments.R;
 import java.util.ArrayList;
 import java.util.List;
 
-
+//adapter for the roster view
+//has drop button
 public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder> {
 
     //Local variables to keep track of players in the list
@@ -27,7 +28,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
 
     private AdapterView.OnItemClickListener listener;
 
-
+    //used in refreshing the view when an item is dropped from the list
     public interface OnItemClickListener {
         void onDropItemClick(int position);
     }
@@ -62,7 +63,7 @@ public class PlayerAdapter extends RecyclerView.Adapter<PlayerAdapter.ViewHolder
         holder.viewholder_years_played_editable.setText(String.valueOf(player.getYears_played()));
         holder.productImage.setImageResource(player.getImageResourceID());
 
-        //onclick behavior for each item.
+        //onclick behavior for each item. not implemented
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){

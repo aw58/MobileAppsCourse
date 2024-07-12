@@ -28,6 +28,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
+//main activity which hosts all the fragments through the navController
+//all database high-level action is done here through the resetDatabase button
+//startup includes no changes to firestore
+//starts on the roster fragment
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;

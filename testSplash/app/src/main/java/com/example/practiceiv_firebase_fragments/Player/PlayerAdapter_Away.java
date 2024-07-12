@@ -14,7 +14,8 @@ import com.example.practiceiv_firebase_fragments.R;
 import java.util.ArrayList;
 import java.util.List;
 
-
+//Special adapter for away players (opponents)
+//does not include "recruit" button
 public class PlayerAdapter_Away extends RecyclerView.Adapter<PlayerAdapter_Away.ViewHolder> {
 
     //Local variables to keep track of products in the list

@@ -33,7 +33,8 @@ import java.util.List;
 public class FieldFragment extends Fragment {
 
     private FragmentFieldBinding binding;
-
+    //local xml element variables
+    //very hardcoded
     private ImageButton home_goalie;
     private ImageButton home_left_def;
     private ImageButton home_left_mid;
@@ -57,9 +58,11 @@ public class FieldFragment extends Fragment {
 
     private FirebaseFirestore player_firebase_db;
 
+    //local definitions of the list of players and opponents after gathering from firestore
     private List<Player> list_of_players;
     private List<Player> list_of_opponents;
 
+    //local versions of the list of position strings for ease of looping
     private List<String> list_of_positions = new ArrayList<>();
     private List<ImageButton> list_of_home_buttons = new ArrayList<>();
     private List<ImageButton> list_of_opponent_buttons = new ArrayList<>();
@@ -80,6 +83,7 @@ public class FieldFragment extends Fragment {
             actionBar.setDisplayHomeAsUpEnabled(true); // Example: enable back button
         }
 
+        //loading up all the positions once so it doesn't have to be repeated
         list_of_positions.add("Goalie");
         list_of_positions.add("Left Defense");
         list_of_positions.add("Left Midfield");
@@ -91,6 +95,7 @@ public class FieldFragment extends Fragment {
         list_of_positions.add("Right Midfield");
         list_of_positions.add("Right Forward");
 
+        //loading all the local variables for xml elements
         home_goalie = root.findViewById(R.id.home_goalie);
         home_left_def = root.findViewById(R.id.home_left_back);
         home_left_mid = root.findViewById(R.id.home_left_mid);
@@ -101,7 +106,8 @@ public class FieldFragment extends Fragment {
         home_right_def = root.findViewById(R.id.home_right_back);
         home_right_mid = root.findViewById(R.id.home_right_mid);
         home_right_front = root.findViewById(R.id.home_right_front);
-        
+
+        //loading home xml elements into a list so they can be looped through
         list_of_home_buttons.add(home_goalie);
         list_of_home_buttons.add(home_left_def);
         list_of_home_buttons.add(home_left_mid);
@@ -113,6 +119,7 @@ public class FieldFragment extends Fragment {
         list_of_home_buttons.add(home_right_mid);
         list_of_home_buttons.add(home_right_front);
 
+        //repeat all for the opponent side
         opp_goalie = root.findViewById(R.id.opp_goalie);
         opp_left_def = root.findViewById(R.id.opp_left_back);
         opp_left_mid = root.findViewById(R.id.opp_left_mid);

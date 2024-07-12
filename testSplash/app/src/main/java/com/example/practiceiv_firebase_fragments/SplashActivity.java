@@ -7,7 +7,9 @@ import android.os.Looper;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
+//simple splash with custom xml
+//lasts for 3 seconds
+//no interaction
 public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {

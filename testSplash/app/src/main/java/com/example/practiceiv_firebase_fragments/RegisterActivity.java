@@ -18,6 +18,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+//register with Firebase.
+//identical functionality to Login except add user call to firestore and back button
 public class RegisterActivity extends AppCompatActivity {
 
     private TextView register_page_title;

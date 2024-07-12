@@ -14,6 +14,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 
+//Firebase helper- creates link to Firebase, uses ID in android xml and package name
+//helps with loading, retrieving, and editing
 public class FirebaseHelper {
 
     private static FirebaseHelper instance;

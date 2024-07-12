@@ -18,6 +18,9 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
+//login activity links to the Firebase authentication
+//implements checks on email and password validity before submission
+//intent linked to the register page via "register" button
 public class LoginActivity extends AppCompatActivity {
 
     private TextView login_page_title;

@@ -19,7 +19,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-
+//special adapter for the backups view
+//has recruit button
 public class PlayerAdapter_Backups extends RecyclerView.Adapter<PlayerAdapter_Backups.ViewHolder> {
 
     //Local variables to keep track of products in the list
@@ -97,6 +98,8 @@ public class PlayerAdapter_Backups extends RecyclerView.Adapter<PlayerAdapter_Ba
                                 }
                             }
 
+                            //check if the position is already taken.
+                            //reject recruitment if taken
                             if(getTaken()) {
                                 Toast myToast = Toast.makeText(view.getContext(), "This position is taken. Drop the player before recruiting.", Toast.LENGTH_SHORT);
                                 myToast.show();
@@ -148,6 +151,7 @@ public class PlayerAdapter_Backups extends RecyclerView.Adapter<PlayerAdapter_Ba
         notifyDataSetChanged();
     }
 
+    //needs notifyDataSetChanged to update the view 
     public void updateRosterList(List<com.example.practiceiv_firebase_fragments.Player.Player> rosterList) {
         this.players = rosterList;
         notifyDataSetChanged();

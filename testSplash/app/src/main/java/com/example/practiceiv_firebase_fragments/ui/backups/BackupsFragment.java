@@ -53,6 +53,7 @@ public class BackupsFragment extends Fragment {
             actionBar.setTitle("Available Backups");
             actionBar.setDisplayHomeAsUpEnabled(true); // Example: enable back button
         }
+        //bind all local variables to xml elements
         backups_recyclerView = root.findViewById(R.id.backups_recyclerView);
         playerAdapter = new PlayerAdapter_Backups();
         backups_recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -67,7 +68,7 @@ public class BackupsFragment extends Fragment {
         player_firebase_db = FirebaseHelper.getInstance().getDatabase();
         list_of_backups = new ArrayList<Player>();
         //retrieve the players
-        // Query players from Firestore
+        // Query backups from Firestore
         FirebaseHelper.getInstance().getAllBackups(
                 queryDocumentSnapshots -> {
                     list_of_backups.clear(); // Clear existing list

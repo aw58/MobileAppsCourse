@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+//Player object to be uploaded to the Firestore
 public class Player implements Parcelable {
 
     //A Product's data fields:
@@ -53,6 +54,7 @@ public class Player implements Parcelable {
         on_the_roster = in.readInt();
     }
 
+    //Constructors for Parcelable interface to send over intent
     @SuppressLint("NewApi")
     @Override
     public void writeToParcel(Parcel dest, int flags) {
