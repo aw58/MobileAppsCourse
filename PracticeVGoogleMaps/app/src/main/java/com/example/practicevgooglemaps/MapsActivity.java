@@ -1,8 +1,11 @@
 package com.example.practicevgooglemaps;
 
 import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.SearchView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -20,15 +23,22 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.gms.maps.model.SquareCap;
 
+import java.io.IOException;
+import java.util.List;
+
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener {
 
     private GoogleMap map;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_maps);
+
+        searchView = findViewById(R.id.searchView);
+        createSearchViewListener();
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -63,7 +73,40 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     @Override
     public void onClick(View v) {
+        //switch (v.getId()){
+            //
+        //}
+    }
 
+    private void createSearchViewListener(){
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                System.out.println("SEARCHING...");
+                String locationName = searchView.getQuery().toString();
+                List<Address> addressList = null;
+                if(locationName != null || locationName.equals("")){
+                    Geocoder geocoder = new Geocoder(MapsActivity.this);
+                    try{
+                        addressList = geocoder.getFromLocationName(locationName, 1);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    Address address = addressList.get(0);
+                    LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                    map.addMarker(new MarkerOptions().position(latLng).title(locationName));
+                    map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+
+                }
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
     }
 
     private void createPolyLinesOnMap(){
@@ -83,8 +126,5 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         polylineOptions.add(sydney, tokyo, singapore);
         map.addPolyline(polylineOptions);
         map.moveCamera(CameraUpdateFactory.newLatLngZoom(tokyo, 2));
-
-
-
     }
 }
