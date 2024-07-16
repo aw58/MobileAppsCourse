@@ -70,15 +70,15 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
             public void onClick(View view) {
                 Toast.makeText(view.getContext(), "Sending to maps", Toast.LENGTH_SHORT).show();
                 //send the map marker to the default maps application on the phone
-                String uri = String.format("geo:%s,%s?q=%s(%s)", current_location.getPosition().latitude, current_location.getPosition().longitude, current_location.getPosition().latitude + "," + current_location.getPosition().longitude, Uri.encode(current_location.getTitle()));
+                if (map != null) {
+                    String uri = String.format("geo:%s,%s?z=%s&q=%s(%s)", current_location.getPosition().latitude, current_location.getPosition().longitude, (int) 10, current_location.getPosition().latitude + "," + current_location.getPosition().longitude, Uri.encode(current_location.getTitle()));
+                    Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+                    intent.setPackage("com.google.android.apps.maps");
 
-                // Create the intent
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
-
-                // Check if there is an app that can handle this intent
-                //if (intent.resolveActivity(getPackageManager()) != null) {
-                //    startActivity(intent);
-                //}
+                    if (intent.resolveActivity(requireActivity().getPackageManager()) != null) {
+                        startActivity(intent);
+                    }
+                }
             }
         });
 
@@ -125,7 +125,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
                             LatLng currentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
                             current_location = new MarkerOptions().position(currentLatLng).title("You are here");
                             map.addMarker(current_location);
-                            map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15));
+                            map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 10));
                         }
                     }
                 });
@@ -176,7 +176,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, View.O
 
                     Address address = addressList.get(0);
                     LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-                    map.addMarker(new MarkerOptions().position(latLng).title(locationName));
+                    current_location = new MarkerOptions().position(latLng).title(locationName);
+                    map.addMarker(current_location);
                     map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
 
                 }
