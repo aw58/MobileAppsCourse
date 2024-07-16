@@ -1,9 +1,15 @@
 package com.example.practicevgooglemaps;
 
+import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Toast;
 
 import com.example.practicevgooglemaps.ui.home.HomeFragment;
 import com.google.android.gms.maps.MapFragment;
@@ -11,6 +17,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -20,6 +27,8 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.practicevgooglemaps.databinding.ActivityMainBinding;
+
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,6 +57,23 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
+        binding.appBarMain.toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Toast.makeText(getApplicationContext(), "Changing the color!", Toast.LENGTH_SHORT).show();
+                //choose a random color and set the theme to it!
+                Random rand = new Random();
+                int[] colors = {R.color.randomColor1, R.color.randomColor2, R.color.randomColor3};
+                int randomColor = getResources().getColor(colors[rand.nextInt(colors.length)]);
+
+                // Set the primary color
+                System.out.println("CHANGING THE COLOR TO: " + randomColor);
+                binding.appBarMain.toolbar.setBackgroundColor(randomColor);
+
+                return false;
+            }
+        });
     }
 
     @Override
