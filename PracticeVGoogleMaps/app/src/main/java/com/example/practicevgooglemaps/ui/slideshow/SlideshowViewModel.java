@@ -4,16 +4,22 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import java.util.List;
+
 public class SlideshowViewModel extends ViewModel {
 
-    private final MutableLiveData<String> mText;
+    private final MutableLiveData<List<RecycleObject>> objectListLiveData;
 
     public SlideshowViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is slideshow fragment");
+        objectListLiveData = new MutableLiveData<>();
+    }
+    // Method to set or update player list in ViewModel
+    public void setPlayerList(List<RecycleObject> players) {
+        objectListLiveData.setValue(players);
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    // Getter for LiveData
+    public LiveData<List<RecycleObject>> getObjectListLiveData() {
+        return objectListLiveData;
     }
 }
