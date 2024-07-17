@@ -26,6 +26,7 @@ public class GalleryFragment extends Fragment {
     private Random random;
     private int screenWidth;
     private int screenHeight;
+    private float scaleFactor = 1.0f; // Initial scale factor
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -48,6 +49,9 @@ public class GalleryFragment extends Fragment {
         click_me.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(scaleFactor >= 4.0F){
+                    click_me.setText("Woah! I'm big!");
+                }
                 moveButtonToRandomLocation();
             }
         });
@@ -69,9 +73,18 @@ public class GalleryFragment extends Fragment {
         // Animate button to new coordinates
         ObjectAnimator animatorX = ObjectAnimator.ofFloat(click_me, "x", newX);
         ObjectAnimator animatorY = ObjectAnimator.ofFloat(click_me  , "y", newY);
+        // Scale button animation
+        ObjectAnimator scaleX = ObjectAnimator.ofFloat(click_me, "scaleX", scaleFactor);
+        ObjectAnimator scaleY = ObjectAnimator.ofFloat(click_me, "scaleY", scaleFactor);
+        scaleFactor += 0.1F;
+
         animatorX.setDuration(250); // Animation duration in milliseconds
         animatorY.setDuration(500); //make it move erratically
+        scaleX.setDuration(500);
+        scaleY.setDuration(500);
         animatorX.start();
         animatorY.start();
+        scaleX.start();
+        scaleY.start();
     }
 }
